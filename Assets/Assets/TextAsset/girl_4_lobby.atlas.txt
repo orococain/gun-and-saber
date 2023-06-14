@@ -1,0 +1,6 @@
+girl_4_lobby.png
+size:1024,2048
+filter:Linear,Linear
+pma:true
+girl_5_lobby
+bounds:2,2,899,1655

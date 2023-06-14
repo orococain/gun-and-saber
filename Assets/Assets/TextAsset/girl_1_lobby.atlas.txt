@@ -1,0 +1,6 @@
+girl_1_lobby.png
+size:1024,2048
+filter:Linear,Linear
+pma:true
+Layer 1
+bounds:2,2,777,1394

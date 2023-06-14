@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Scifi Rail
+  m_Controller: {fileID: 9100000, guid: 0b7b1c9e5e404bb479503574dd890172, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: babfec8d868b0e84d8d014f27969046d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6196671459ded5d47a76afb0d73fe25b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 55f2eda240672c4489d1c91cedc0696f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 74516f63a9f775a428bea3ed29d3f606, type: 2}

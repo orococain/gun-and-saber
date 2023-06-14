@@ -1,0 +1,10 @@
+girl_3_lobby.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+girl_4_lobby
+bounds:2,2,1118,1726
+offsets:0,0,1210,1726
+rotate:90
+girl_4_lobby_arm
+bounds:2,1122,499,498
