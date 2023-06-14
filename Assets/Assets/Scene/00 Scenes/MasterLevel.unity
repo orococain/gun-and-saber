@@ -146747,6 +146747,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &766503973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4207040317794005, guid: 6d85d244e0ee0fe4e920cfa0de0f1a10, type: 3}
+  m_PrefabInstance: {fileID: 821525565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &783554752
 GameObject:
   m_ObjectHideFlags: 0
@@ -147098,6 +147103,10 @@ PrefabInstance:
       propertyPath: waitReload
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7562860000459828592, guid: 6d85d244e0ee0fe4e920cfa0de0f1a10, type: 3}
+      propertyPath: CirclePoint
+      value: 
+      objectReference: {fileID: 766503973}
     - target: {fileID: 7562860000459828592, guid: 6d85d244e0ee0fe4e920cfa0de0f1a10, type: 3}
       propertyPath: MuzzleScale
       value: 1
