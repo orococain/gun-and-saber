@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+
 public enum GunMode {
     Single,
     Auto,
@@ -41,6 +43,8 @@ public class Gun : MonoBehaviour
     private bool isFiring = false; // Whether the gun is currently firing
     public float fireRate = 0.2f; // The delay between each shot when firing continuously
     private float timeNextShot = 0f; // The time to fire the next sho
+    [SerializeField]
+    private GunMode currentGunMode = GunMode.Single;
     public void Update()
     {
         if (Input.touchCount> 0 ) 
@@ -58,15 +62,47 @@ public class Gun : MonoBehaviour
  
     public void OnTouchDown()
     {
+        // Check if the gun is currently firing or not
+        // If the gun is already firing, skip this frame, and wait for the next frame
+        if (isFiring) {
+            return;
+        }
+
         if ( currentBullet > 0) 
         {
+            // Mark the gun as firing
+            isFiring = true;
+
+            // Shoot the gun for only one bullet at a time
             Shoot();
+
+            // Wait for a delay before the next shot can be fired
+            StartCoroutine(FireDelay());
         }
         else
         {
             Reload();
         }
     }
+    public void SetSingleMode() {
+        currentGunMode = GunMode.Single;
+    }
+
+    public void SetAutoMode() {
+        currentGunMode = GunMode.Auto;
+    }
+
+    public void SetBurstMode() {
+        currentGunMode = GunMode.Burst;
+    }
+    private IEnumerator FireDelay() {
+        // Wait for a delay before the next shot can be fired
+        yield return new WaitForSeconds(fireRate);
+
+        // Mark the gun as not firing anymore, so the next shot can be fired for the next touch event
+        isFiring = false;
+    }
+
     public void Shoot()
     {
         if (currentBullet > 0)
@@ -91,7 +127,7 @@ public class Gun : MonoBehaviour
             {
                 uiGameplayGun.UpdateBullet(currentBullet);
             }
-            if (currentBullet <= 0 && isReloading )
+            if (currentBullet <= 0 && !isReloading)
             {
                 Reload();
             }
@@ -139,7 +175,7 @@ public void PlayMagInSound() {
 
 public void SpawnShell() {
     if (BulletShellPrefab != null && BulletShellOffset != null) {
-        BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, transform.rotation);
+            BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, transform.rotation);
         shell.transform.rotation = BulletShellOffset.rotation;
 
         Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
@@ -159,5 +195,6 @@ public void SpawnMuzzle() {
         Destroy(muzzle, 2f);
     }
 }
+
 
 }
