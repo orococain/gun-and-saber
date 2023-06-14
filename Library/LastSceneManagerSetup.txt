@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Assets/Scene/00 Scenes/MasterLevel.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0

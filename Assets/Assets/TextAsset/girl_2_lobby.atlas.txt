@@ -1,0 +1,6 @@
+girl_2_lobby.png
+size:1024,2048
+filter:Linear,Linear
+pma:true
+girl_2_collection
+bounds:2,2,743,1447

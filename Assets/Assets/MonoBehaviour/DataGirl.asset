@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ef3cb2d36545d23678b84b8dfe2211, type: 3}
+  m_Name: DataGirl
+  m_EditorClassIdentifier:
+  girlData:
+  - dataSkeleton: {fileID: 11400000, guid: d6aa5d21dae2e144da2e8e9bbb03d737, type: 2}
+    icon: {fileID: 21300000, guid: 474c86330d26b854b9fc40c1077ec3a6, type: 2}
+    scale: 0.9
+    offset: {x: 250, y: -650}
+  - dataSkeleton: {fileID: 11400000, guid: 93727e6fc26b93c4eb61b199cc72bf7a, type: 2}
+    icon: {fileID: 21300000, guid: caca26ec52e9bbe4a8dad626a30937df, type: 2}
+    scale: 1
+    offset: {x: 275, y: -750}
+  - dataSkeleton: {fileID: 11400000, guid: 66f4bddc984a6144a83d91735c3a0485, type: 2}
+    icon: {fileID: 21300000, guid: 07f7546d24a797d458c6878a82a8dde8, type: 2}
+    scale: 0.93
+    offset: {x: 200, y: -735}
+  - dataSkeleton: {fileID: 11400000, guid: bf2b3f61219da08469fea4508449d33f, type: 2}
+    icon: {fileID: 21300000, guid: ab82f48060fde694d9a8b5f615323f9f, type: 2}
+    scale: 0.8
+    offset: {x: 190, y: -590}
+  - dataSkeleton: {fileID: 11400000, guid: 55b04545838dfc5488f30928b7aa8907, type: 2}
+    icon: {fileID: 21300000, guid: 85ead18aece25fd41869c31c6656d5ab, type: 2}
+    scale: 0.8
+    offset: {x: 230, y: -580}
+  - dataSkeleton: {fileID: 11400000, guid: a96de537b67aae346a408f38ae60403e, type: 2}
+    icon: {fileID: 21300000, guid: 0af2d5a95e68fb9479c511d96060bb20, type: 2}
+    scale: 0.88
+    offset: {x: 250, y: -650}
