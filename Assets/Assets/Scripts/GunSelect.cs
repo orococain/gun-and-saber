@@ -14,7 +14,6 @@ public class GunSelect : MonoBehaviour
     public Image switchGunImage5;
     public Image switchGunImage6;
     public Image switchGunImage7;
-    public Image switchGunImage8;
     void Start()
     {
         // Add event listeners to switch gun images
