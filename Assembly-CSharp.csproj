@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{949832cb-695b-c80a-20b3-f7b774378712}</ProjectGuid>
+    <ProjectGuid>{7d1d8f69-690f-1d86-7f95-ccadcaab5446}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -42,22 +42,25 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\Assets\Scripts\GunEvent.cs" />
      <Compile Include="Assets\Assets\Scripts\UIGameplayGun.cs" />
      <Compile Include="Assets\Assets\Scripts\LoadingScreen.cs" />
      <Compile Include="Assets\Assets\Scripts\PopUpSetting.cs" />
-     <Compile Include="Assets\ButtonFunc.cs" />
+     <Compile Include="Assets\Assets\Scripts\ButtonFunc.cs" />
      <Compile Include="Assets\Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Assets\Scripts\TouchInput.cs" />
+     <Compile Include="Assets\Assets\Scripts\GunSelect.cs" />
      <Compile Include="Assets\Assets\Scripts\BulletShell.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchToGamePlay.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystick.cs" />
+     <Compile Include="Assets\Assets\Scripts\BackGrounData.cs" />
      <Compile Include="Assets\Assets\Scripts\OnOffSetting.cs" />
      <Compile Include="Assets\Assets\Scripts\ChangeGirl.cs" />
+     <Compile Include="Assets\Assets\Scripts\GunModel.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystickScreenSizeUpdater.cs" />
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
-     <Compile Include="Assets\Assets\Scripts\GunModel.cs" />
-     <Compile Include="Assets\Assets\Scripts\GunSelect.cs" />
-     <Compile Include="Assets\Assets\Scripts\BackGrounData.cs" />
+     <Compile Include="Assets\Assets\Scripts\ZoomIN.cs" />
+     <Compile Include="Assets\Assets\Scripts\GunSelectMenu.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />
@@ -772,37 +775,37 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VSCode.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
      </Reference>
      <Reference Include="Unity.TextMeshPro">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.DeviceSimulator.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.DeviceSimulator.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.DeviceSimulator.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Rider.Editor">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\hisupergame\3D lightSaber\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

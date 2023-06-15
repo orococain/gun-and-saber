@@ -6,29 +6,18 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-
-public enum GunMode {
-    Single,
-    Auto,
-    Burst
-}
-
 public class Gun : MonoBehaviour
 {
     [SerializeField] 
     public int bulletMax; //số đạn tối đa của khẩu súng
-    public float maxTimePerShot; //thời gian giữa các lần bắn
     public float waitReload; //thời gian chờ để nạp đạn
     public AudioClip clipShoot; //âm thanh khi bắn đạn
     private int numberBurst; //số đạn bắn liên tiếp
     private int burstRest; //số đạn khi bắn burst 
     public AudioClip clipReload; //âm thanh khi nạp đạn
-    public Animator anim;
-  //  public UIGameplayGun.GunInputType currentInputType; //kiểu nhập liệu cho khẩu súng
     private bool isReloading; //đang trong quá trình nạp đạn
     public int currentBullet; //số đạn hiện tại của khẩu súng
     private UIGameplayGun uiGameplayGun; //đối tượng UI của khẩu súng
-    private bool haveBoostEnergy; //đang có boost energy hay không
     public BulletShell BulletShellPrefab; //prefab của hiệu ứng vỏ đạn  khi bắn
     public float BulletShellScale; //tỉ lệ thu nhỏ của hiệu ứng vỏ đạn  khi bắn
     public Transform BulletShellOffset; //vị trí spawn hiệu ứng vỏ đạn  khi bắn
@@ -39,27 +28,25 @@ public class Gun : MonoBehaviour
     public float MuzzleScale; //tỉ lệ thu nhỏ của hiệu ứng khi bắn
     public GameObject effect; //prefab của hiệu ứng ánh sáng khi bắn
     public TMP_Text bulletCountText;
-    private bool isFiring = false; // Whether the gun is currently firing
-    public float fireRate = 0.2f; // The delay between each shot when firing continuously
-    private float timeNextShot = 0f; // The time to fire the next sho
+    public Collider2D gunCollider;
     public void Update()
     {
-        bool isTouchingButton = EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
-
-        // Nếu không chạm vào nút, bắn đạn
-        if (!isTouchingButton)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (currentBullet > 0 && Time.time >= timeNextShot)
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (gunCollider == Physics2D.OverlapPoint(ray.origin)) // Kiểm tra chạm vào Collider bắn súng hay không
             {
-                FlyBullet();
-                timeNextShot = Time.time + fireRate;
-            }
-            else
-            {
-                LoadBullet();
+                if (currentBullet > 0)
+                {
+                    FlyBullet();
+                }
+                else
+                {
+                    Reload();
+                }
             }
         }
-        
     }
     public void Start()
     {
@@ -67,18 +54,7 @@ public class Gun : MonoBehaviour
             bulletCountText.text = currentBullet.ToString();
         }
     }
- 
-    public void OnTouchDown()
-    {
-        if ( currentBullet > 0) 
-        {
-            FlyBullet();
-        }
-        else
-        {
-           LoadBullet();
-        }
-    }
+    
     public void FlyBullet()
     {
         if (currentBullet > 0)
@@ -105,12 +81,12 @@ public class Gun : MonoBehaviour
             }
             if (currentBullet <= 0 && isReloading )
             {
-                LoadBullet();
+               Reload();
             }
         }
     }
     
-    public void LoadBullet() {
+    public void Reload() {
         {
             if (!isReloading)
             {
@@ -164,9 +140,9 @@ public void SpawnShell()
 public void SpawnMuzzle() {
     if (MuzzlePrefab != null && PointFx != null)
     {
-        GameObject muzzle = Instantiate(MuzzlePrefab, PointFx.position, Quaternion.Euler(new Vector3(180, 0, 180)));
+        GameObject muzzle = Instantiate(MuzzlePrefab, PointFx.position, Quaternion.Euler(new Vector3(180, 0, 180)), transform.parent);
         muzzle.transform.localScale = new Vector3(MuzzleScale, MuzzleScale, MuzzleScale);
-        Destroy(muzzle, 2f);
+        Destroy(muzzle, 0.3f);
     }
 }
 
