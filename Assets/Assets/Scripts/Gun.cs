@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.EventSystems;
 
 
 public enum GunMode {
@@ -33,7 +33,6 @@ public class Gun : MonoBehaviour
     public float BulletShellScale; //tỉ lệ thu nhỏ của hiệu ứng vỏ đạn  khi bắn
     public Transform BulletShellOffset; //vị trí spawn hiệu ứng vỏ đạn  khi bắn
     public float ForceBulletShell; //lực tác động khi spawn hiệu ứng hạt nhựa khi bắn
-    public GameObject bullet; //đối tượng hiệu ứng hạt nhựa khi bắn (được spawn từ prefab)
     public Transform PointFx; //vị trí để hiển thị hiệu ứng khi bắn
     public Transform CirclePoint;
     public GameObject MuzzlePrefab; //prefab của hiệu ứng khi bắn
@@ -43,13 +42,22 @@ public class Gun : MonoBehaviour
     private bool isFiring = false; // Whether the gun is currently firing
     public float fireRate = 0.2f; // The delay between each shot when firing continuously
     private float timeNextShot = 0f; // The time to fire the next sho
-    [SerializeField]
-    private GunMode currentGunMode = GunMode.Single;
     public void Update()
     {
-        if (Input.touchCount> 0 ) 
+        bool isTouchingButton = EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+
+        // Nếu không chạm vào nút, bắn đạn
+        if (!isTouchingButton)
         {
-            OnTouchDown();
+            if (currentBullet > 0 && Time.time >= timeNextShot)
+            {
+                FlyBullet();
+                timeNextShot = Time.time + fireRate;
+            }
+            else
+            {
+                LoadBullet();
+            }
         }
         
     }
@@ -62,48 +70,16 @@ public class Gun : MonoBehaviour
  
     public void OnTouchDown()
     {
-        // Check if the gun is currently firing or not
-        // If the gun is already firing, skip this frame, and wait for the next frame
-        if (isFiring) {
-            return;
-        }
-
         if ( currentBullet > 0) 
         {
-            // Mark the gun as firing
-            isFiring = true;
-
-            // Shoot the gun for only one bullet at a time
-            Shoot();
-
-            // Wait for a delay before the next shot can be fired
-            StartCoroutine(FireDelay());
+            FlyBullet();
         }
         else
         {
-            Reload();
+           LoadBullet();
         }
     }
-    public void SetSingleMode() {
-        currentGunMode = GunMode.Single;
-    }
-
-    public void SetAutoMode() {
-        currentGunMode = GunMode.Auto;
-    }
-
-    public void SetBurstMode() {
-        currentGunMode = GunMode.Burst;
-    }
-    private IEnumerator FireDelay() {
-        // Wait for a delay before the next shot can be fired
-        yield return new WaitForSeconds(fireRate);
-
-        // Mark the gun as not firing anymore, so the next shot can be fired for the next touch event
-        isFiring = false;
-    }
-
-    public void Shoot()
+    public void FlyBullet()
     {
         if (currentBullet > 0)
         {
@@ -114,7 +90,7 @@ public class Gun : MonoBehaviour
             }
 
             SpawnShell();
-            gameObject.GetComponent<Animator>().Play("Vector_Shoot");
+            gameObject.GetComponent<Animator>().Play("Shoot");
             AudioSource.PlayClipAtPoint(clipShoot, Camera.main.transform.position);
             SpawnMuzzle();
             if (effect != null)
@@ -127,14 +103,14 @@ public class Gun : MonoBehaviour
             {
                 uiGameplayGun.UpdateBullet(currentBullet);
             }
-            if (currentBullet <= 0 && !isReloading)
+            if (currentBullet <= 0 && isReloading )
             {
-                Reload();
+                LoadBullet();
             }
         }
     }
     
-    public void Reload() {
+    public void LoadBullet() {
         {
             if (!isReloading)
             {
@@ -150,7 +126,7 @@ public class Gun : MonoBehaviour
                 }
 
                 isReloading = true;
-                gameObject.GetComponent<Animator>().Play("Vector_Reload");
+                gameObject.GetComponent<Animator>().Play("Reload");
                 StartCoroutine(DelayReloadBullet(waitReload));
                 PlayMagOutSound();
             } 
@@ -173,16 +149,14 @@ public void PlayMagInSound() {
     }
 }
 
-public void SpawnShell() {
-    if (BulletShellPrefab != null && BulletShellOffset != null) {
-            BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, transform.rotation);
-        shell.transform.rotation = BulletShellOffset.rotation;
-
+public void SpawnShell()
+{
+    if (BulletShellPrefab != null && BulletShellOffset != null)
+    {
+        BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, BulletShellOffset.rotation);
         Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
-        if (shellRigidbody != null) {
-            shellRigidbody.AddForce(BulletShellOffset.forward * ForceBulletShell, ForceMode.Impulse);
-        }
-
+        shellRigidbody.AddForce(BulletShellOffset.right * ForceBulletShell);
+        shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);
         Destroy(shell.gameObject, 2.0f);
     }
 }
@@ -195,6 +169,5 @@ public void SpawnMuzzle() {
         Destroy(muzzle, 2f);
     }
 }
-
 
 }
