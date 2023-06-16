@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 4054593348985681}
   - component: {fileID: 95046086174732963}
   - component: {fileID: 8095117940582657147}
+  - component: {fileID: 1596031377}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Untagged
@@ -295,23 +296,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletMax: 30
-  maxTimePerShot: 2
   waitReload: 3
   clipShoot: {fileID: 8300000, guid: 6339ffe5a7cd4504ca602800cba4a0cc, type: 3}
   clipReload: {fileID: 8300000, guid: 2a97cd607004edd48ad061cf45fa9d83, type: 3}
-  anim: {fileID: 95046086174732963}
   currentBullet: 30
   BulletShellPrefab: {fileID: 8488642969036113108, guid: b4383b07886c5204899f03a979169abf, type: 3}
-  BulletShellScale: 1
-  BulletShellOffset: {fileID: 4764697354676239, guid: b4383b07886c5204899f03a979169abf, type: 3}
-  ForceBulletShell: 1
+  BulletShellScale: 1.5
+  ForceBulletShell: 2
   PointFx: {fileID: 4972753107364844}
   CirclePoint: {fileID: 4660022195201890}
-  MuzzlePrefab: {fileID: 9070137572575942895, guid: 4f67ef5c78251a44c93794eef926a767, type: 3}
-  MuzzleScale: 1
+  MuzzlePrefab: {fileID: 5632051321620555696, guid: 12c621527c02a944e93738ea6f88974f, type: 3}
   effect: {fileID: 1872667682302991}
+  MuzzleParticleSystem: {fileID: 198481130047238256}
   bulletCountText: {fileID: 0}
-  fireRate: 0.2
+  gunCollider: {fileID: 0}
+  isBurstMode: 0
+  isAutoMode: 0
+  firingRate: 0.1
+--- !u!61 &1596031377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254292231135002}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 12.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 25, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &1272897481476626
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1317588517247311}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00005704357, y: 0.000662, z: 0.001098}
+  m_LocalPosition: {x: 0.00035, y: 0.000662, z: 0.001098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4317301925075522}
@@ -631,7 +658,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669408368465713}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -664,13 +691,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867732734397080}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 110, y: -30, z: -22}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.00035, y: 0.000662, z: 0.001098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4585303504285541}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: 0}
 --- !u!1 &1872667682302991
 GameObject:
   m_ObjectHideFlags: 0

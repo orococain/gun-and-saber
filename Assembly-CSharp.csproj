@@ -62,6 +62,7 @@
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystickScreenSizeUpdater.cs" />
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LimitFps.cs" />
+     <Compile Include="Assets\RotateModel.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />

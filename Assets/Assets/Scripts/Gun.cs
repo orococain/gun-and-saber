@@ -16,7 +16,6 @@ public class Gun : MonoBehaviour
     public AudioClip clipReload; //âm thanh khi nạp đạn
     private bool isReloading; //đang trong quá trình nạp đạn
     public int currentBullet; //số đạn hiện tại của khẩu súng
-    private UIGameplayGun uiGameplayGun; //đối tượng UI của khẩu súng
     public BulletShell BulletShellPrefab; //prefab của hiệu ứng vỏ đạn  khi bắn
     public float BulletShellScale; //tỉ lệ thu nhỏ của hiệu ứng vỏ đạn  khi bắn
     public float ForceBulletShell; //lực tác động khi spawn hiệu ứng hạt nhựa khi bắn
@@ -29,6 +28,12 @@ public class Gun : MonoBehaviour
     public Collider2D gunCollider;
     private bool isFiring = false;
     private bool isSmoking = false;
+    [SerializeField] private bool isBurstMode = false; //chế độ bắn Burst
+    [SerializeField] private bool isAutoMode = false; //chế độ bắn tự động
+    [SerializeField] private float firingRate = 0.1f; //tần suất bắn trong chế độ bắn tự động
+
+    private Coroutine autoFireCoroutine; //Coroutine của chế độ bắn tự động
+    private Coroutine burstFireCoroutine; //Coroutine của chế độ bắn Burst
 
     public void Update()
     {
@@ -64,7 +69,7 @@ public class Gun : MonoBehaviour
                 StartCoroutine(DelayStopSmoke());
             }
         }
-    }
+        }
 
     public void Start()
     {
@@ -139,13 +144,11 @@ public class Gun : MonoBehaviour
 
 public void SpawnShell()
 {
-         BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, CirclePoint.rotation);
-        shell.transform.position = CirclePoint.TransformPoint(CirclePoint.localPosition);
-       // BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, transform.rotation);
-        Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
-        shellRigidbody.AddForce(CirclePoint.right * ForceBulletShell);
-        shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);
-        Destroy(shell.gameObject, 2.0f);
+    BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, CirclePoint.rotation);
+    Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
+    shellRigidbody.AddForce(CirclePoint.right * ForceBulletShell);
+    shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);
+    Destroy(shell.gameObject, 2.0f);
 }
 
 public void SpawnMuzzle() {
