@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\Properties\AssemblyInfo.cs" />
+     <Compile Include="Assets\Assets\Scripts\GunSelectMenu.cs" />
      <Compile Include="Assets\Assets\Scripts\GunEvent.cs" />
      <Compile Include="Assets\Assets\Scripts\UIGameplayGun.cs" />
      <Compile Include="Assets\Assets\Scripts\LoadingScreen.cs" />
@@ -53,14 +54,14 @@
      <Compile Include="Assets\Assets\Scripts\BulletShell.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchToGamePlay.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystick.cs" />
+     <Compile Include="Assets\Assets\Scripts\ZoomIN.cs" />
      <Compile Include="Assets\Assets\Scripts\BackGrounData.cs" />
      <Compile Include="Assets\Assets\Scripts\OnOffSetting.cs" />
      <Compile Include="Assets\Assets\Scripts\ChangeGirl.cs" />
      <Compile Include="Assets\Assets\Scripts\GunModel.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystickScreenSizeUpdater.cs" />
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
-     <Compile Include="Assets\Assets\Scripts\ZoomIN.cs" />
-     <Compile Include="Assets\Assets\Scripts\GunSelectMenu.cs" />
+     <Compile Include="Assets\Assets\Scripts\LimitFps.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />
