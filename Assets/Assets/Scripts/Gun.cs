@@ -175,7 +175,7 @@ public class Gun : MonoBehaviour
 
 public void SpawnShell()
 {
-    BulletShell shell = Instantiate(BulletShellPrefab, CirclePoint.position, CirclePoint.rotation);
+    BulletShell shell = Instantiate(BulletShellPrefab,CirclePoint.position, CirclePoint.rotation);
     Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
     shellRigidbody.AddForce(CirclePoint.right * ForceBulletShell);
     shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);

@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 4054593348985681}
   - component: {fileID: 95046086174732963}
   - component: {fileID: 8095117940582657147}
-  - component: {fileID: 1596031377}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Untagged
@@ -298,47 +297,19 @@ MonoBehaviour:
   bulletMax: 30
   waitReload: 3
   clipShoot: {fileID: 8300000, guid: 6339ffe5a7cd4504ca602800cba4a0cc, type: 3}
+  numberBurst: 5
   clipReload: {fileID: 8300000, guid: 2a97cd607004edd48ad061cf45fa9d83, type: 3}
   currentBullet: 30
   BulletShellPrefab: {fileID: 8488642969036113108, guid: b4383b07886c5204899f03a979169abf, type: 3}
   BulletShellScale: 1.5
   ForceBulletShell: 2
   PointFx: {fileID: 4972753107364844}
-  CirclePoint: {fileID: 4660022195201890}
+  CirclePoint: {fileID: 4083054554882602}
   MuzzlePrefab: {fileID: 5632051321620555696, guid: 12c621527c02a944e93738ea6f88974f, type: 3}
   effect: {fileID: 1872667682302991}
   MuzzleParticleSystem: {fileID: 198481130047238256}
   bulletCountText: {fileID: 0}
   gunCollider: {fileID: 0}
-  isBurstMode: 0
-  isAutoMode: 0
-  firingRate: 0.1
---- !u!61 &1596031377
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254292231135002}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 12.5, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 25, y: 100}
-  m_EdgeRadius: 0
 --- !u!1 &1272897481476626
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4585303504285541
 Transform:
   m_ObjectHideFlags: 0
