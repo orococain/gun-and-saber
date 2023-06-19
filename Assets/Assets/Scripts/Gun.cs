@@ -11,8 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] public int bulletMax; //số đạn tối đa của khẩu súng
     public float waitReload; //thời gian chờ để nạp đạn
     public AudioClip clipShoot; //âm thanh khi bắn đạn
-    private int numberBurst; //số đạn bắn liên tiếp
-    private int burstRest; //số đạn khi bắn burst 
+    public int numberBurst; //số đạn bắn liên tiếp
     public AudioClip clipReload; //âm thanh khi nạp đạn
     private bool isReloading; //đang trong quá trình nạp đạn
     public int currentBullet; //số đạn hiện tại của khẩu súng
@@ -28,12 +27,7 @@ public class Gun : MonoBehaviour
     public Collider2D gunCollider;
     private bool isFiring = false;
     private bool isSmoking = false;
-    [SerializeField] private bool isBurstMode = false; //chế độ bắn Burst
-    [SerializeField] private bool isAutoMode = false; //chế độ bắn tự động
-    [SerializeField] private float firingRate = 0.1f; //tần suất bắn trong chế độ bắn tự động
-
-    private Coroutine autoFireCoroutine; //Coroutine của chế độ bắn tự động
-    private Coroutine burstFireCoroutine; //Coroutine của chế độ bắn Burst
+    private bool isBurst = false;
 
     public void Update()
     {
@@ -52,24 +46,16 @@ public class Gun : MonoBehaviour
                     Reload();
                 }
             }
-            else
-            {
-                if (isFiring)
+            if (isFiring)
                 {
                     isFiring = false;
-                    StartCoroutine(DelayStopSmoke());
+                    StartCoroutine(DelayStopSmoke()); 
+                    
                 }
-            }
         }
-        else // Kiểm tra xem người chơi có đang bắn hay không
-        {
-            if (isFiring) // Nếu đang bắn
-            {
-                isFiring = false;
-                StartCoroutine(DelayStopSmoke());
-            }
-        }
-        }
+    }
+
+    
 
     public void Start()
     {
@@ -79,8 +65,18 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void FlyBullet()
+    public void IsBurst(int bulletNum)
     {
+        if (!isBurst || currentBullet > 0)
+        {
+            StartCoroutine(BurstShoot(bulletNum));
+            Debug.Log("Burst");
+        }
+    }
+  
+    public void FlyBullet(int bulletNum = 1)
+    {
+        
         if (currentBullet > 0)
         {
             currentBullet--;
@@ -88,7 +84,6 @@ public class Gun : MonoBehaviour
             {
                 bulletCountText.text = currentBullet.ToString();
             }
-
             SpawnShell();
             gameObject.GetComponent<Animator>().Play("Shoot");
             AudioSource.PlayClipAtPoint(clipShoot, Camera.main.transform.position);
@@ -106,6 +101,41 @@ public class Gun : MonoBehaviour
             }
 
         }
+    }
+    
+    
+    private IEnumerator BurstShoot(int bulletNum = 3 )
+    {
+        isFiring = true;
+
+        for (int i = 0; i < numberBurst && currentBullet > 0; i++)
+        {
+            currentBullet--;
+            if (bulletCountText != null)
+            {
+                bulletCountText.text = currentBullet.ToString();
+            }
+
+            SpawnShell();
+            gameObject.GetComponent<Animator>().Play("Shoot");
+            AudioSource.PlayClipAtPoint(clipShoot, Camera.main.transform.position);
+            SpawnMuzzle();
+            if (effect != null)
+            {
+                GameObject obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
+                Destroy(obj, 2.0f);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (currentBullet <= 0 && isReloading)
+        {
+            Reload();
+        }
+
+        // Thực hiện chờ giữa các burst
+        yield return new WaitForSeconds(0.5f);
+        isFiring = false;
     }
 
     public void Reload()
@@ -167,7 +197,6 @@ public void SpawnSmoke()
         MuzzleParticleSystem.transform.localRotation = Quaternion.identity;
         ParticleSystem ps = MuzzleParticleSystem.GetComponent<ParticleSystem>();
         ps.Play();
-        Debug.Log("SMOKE");
     }
 }
 
