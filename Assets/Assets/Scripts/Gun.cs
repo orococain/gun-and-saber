@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void IsBurst(int bulletNum)
+    public void IsBurst(int bulletNum) 
     {
         if (!isBurst || currentBullet > 0)
         {
@@ -74,7 +74,7 @@ public class Gun : MonoBehaviour
         }
     }
   
-    public void FlyBullet(int bulletNum = 1)
+    public void FlyBullet()
     {
         
         if (currentBullet > 0)
