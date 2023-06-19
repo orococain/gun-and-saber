@@ -5,12 +5,15 @@ using UnityEngine;
 public class SwitchGunMode : MonoBehaviour
 {
     
-    public Gun gunMode;
-    
-    public void isBurst( )
+    public List<Gun> guns;
+
+    public void BurstModeAllGuns()
     {
-        gunMode.IsBurst(3);
-        Debug.Log("Switch");
+        foreach (Gun gun in guns)
+        {
+            gun.IsBurst(3);
+
+        }
     }
 
 

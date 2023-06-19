@@ -46,12 +46,11 @@ public class Gun : MonoBehaviour
                     Reload();
                 }
             }
-            if (isFiring)
-                {
+            if (isFiring) {
                     isFiring = false;
                     StartCoroutine(DelayStopSmoke()); 
                     
-                }
+            }
         }
     }
 
@@ -137,6 +136,8 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isFiring = false;
     }
+    
+    
 
     public void Reload()
     {
