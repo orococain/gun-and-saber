@@ -59,7 +59,7 @@
      <Compile Include="Assets\Assets\Scripts\ChangeGirl.cs" />
      <Compile Include="Assets\Assets\Scripts\GunModel.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystickScreenSizeUpdater.cs" />
-     <Compile Include="Assets\RotateModel.cs" />
+     <Compile Include="Assets\Assets\Scripts\RotateModel.cs" />
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\FlashLightAndVibrate.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchGunMode.cs" />

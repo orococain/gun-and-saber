@@ -44,8 +44,5 @@ public class GunSelectMenu : MonoBehaviour
         guns[currentGunIndex].SetActive(true);
         UIShop.SetActive(false);
         UIGamePlay.SetActive(true);
-        // Swap to game UI
-        // Example code:
-        // UIManager.Instance.SwapToGameUI();
     }
 }

@@ -6,7 +6,7 @@ public class LoadingScreen : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject uiGamePlay;
-    public void LoadScene(int sceneName)
+    public void LoadScene()
     {
         StartCoroutine(LoadSceneAsync());
         Time.timeScale = 1f;

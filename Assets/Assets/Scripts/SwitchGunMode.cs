@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SwitchGunMode : MonoBehaviour
 {
-
+    
     public Gun gunMode;
-
+    
     public void isBurst( )
     {
         gunMode.IsBurst(3);
