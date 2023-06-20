@@ -49,9 +49,11 @@
      <Compile Include="Assets\Assets\Scripts\PopUpSetting.cs" />
      <Compile Include="Assets\Assets\Scripts\ButtonFunc.cs" />
      <Compile Include="Assets\Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Assets\Scripts\FlashLightAndVibrate.cs" />
      <Compile Include="Assets\Assets\Scripts\GunSelect.cs" />
      <Compile Include="Assets\Assets\Scripts\BulletShell.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchToGamePlay.cs" />
+     <Compile Include="Assets\Assets\Scripts\SwitchGunMode.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystick.cs" />
      <Compile Include="Assets\Assets\Scripts\ZoomIN.cs" />
      <Compile Include="Assets\Assets\Scripts\BackGrounData.cs" />
@@ -61,8 +63,6 @@
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystickScreenSizeUpdater.cs" />
      <Compile Include="Assets\Assets\Scripts\RotateModel.cs" />
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
-     <Compile Include="Assets\Assets\Scripts\FlashLightAndVibrate.cs" />
-     <Compile Include="Assets\Assets\Scripts\SwitchGunMode.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />
