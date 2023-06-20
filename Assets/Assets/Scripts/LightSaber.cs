@@ -22,7 +22,7 @@ public class LightSaber : MonoBehaviour
     public float currentPower;
     public bool isPowered;
     public BoxCollider2D saberCollider;
-
+    public Slider colorSlider;
    // public GameObject reloadPanel; // UI Canvas để hiển thị thông báo pop-up
     public float reloadTime = 2f;
     private bool isReadyToPlay = true;
@@ -32,6 +32,7 @@ public class LightSaber : MonoBehaviour
         currentPower = maxPower;
         powerBar.fillAmount = 1;
        // reloadPanel.SetActive(false);
+       colorSlider.onValueChanged.AddListener(ChangeSaberColor);
     }
 
     public void Update()
@@ -128,6 +129,23 @@ public class LightSaber : MonoBehaviour
             material.SetColor("_EmissionColor", saberColor * intensitySaber);
             // material.SetFloat("_EmissionIntensity",
             //     Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
+        }
+    }
+    
+    public void ChangeSaberColor(float value)
+    {
+        // Lấy giá trị màu từ slider
+        saberColor = Color.HSVToRGB(value, 1f, 1f);
+
+        // Cập nhật màu lưỡi kiếm
+        foreach (Material material in glowMaterial)
+        {
+            material.SetColor("_EmissionColor", saberColor * intensityGlow);
+        }
+
+        foreach (Material material in saberGlowMaterial)
+        {
+            material.SetColor("_EmissionColor", saberColor * intensitySaber);
         }
     }
 }
