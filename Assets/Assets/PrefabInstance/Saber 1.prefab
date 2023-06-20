@@ -2293,7 +2293,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8da3c2b0e8ce18542894137be1cccb70, type: 2}
+  - {fileID: 2100000, guid: 2d8cdc44ff82bb043975e83b8d1b376f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9329,6 +9329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4120050073726178}
+  - component: {fileID: 708122196}
   m_Layer: 5
   m_Name: Saber 1
   m_TagString: Untagged
@@ -9351,6 +9352,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &708122196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411703080095604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1250cd2945aba4eabb5f3239fc2471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial:
+  - {fileID: 2100000, guid: 0f4c4bbe9cfab474383d5df28c3011d9, type: 2}
+  saberGlowMaterial:
+  - {fileID: 2100000, guid: 36fd51da60040054985e080cab2543c7, type: 2}
+  electicFx:
+  - {fileID: 198956408503428273}
+  effectColor:
+  - {fileID: 198956408503428273}
+  saberColor: {r: 0.9056604, g: 0, b: 0, a: 1}
+  intensityGlow: 1
+  intensitySaber: 1
+  saberPrefab: {fileID: 1804134705509143}
+  lightSaber:
+  - {fileID: 4624297859329826}
+  powerBar: {fileID: 0}
+  maxPower: 100
+  currentPower: 100
+  isPowered: 1
+  saberCollider: {fileID: 0}
 --- !u!1 &1495141455813973
 GameObject:
   m_ObjectHideFlags: 0
@@ -16359,7 +16391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4700894998030761
 Transform:
   m_ObjectHideFlags: 0
