@@ -51,6 +51,14 @@ public class Gun : MonoBehaviour
                     StartCoroutine(DelayStopSmoke()); 
                     
             }
+            else if (Input.GetMouseButton(0))
+            {
+                // Nếu người dùng đang giữ chuột trái, thực hiện bắn liên tục
+                if (!isBurst || currentBullet > 0)
+                {
+                    BurstShoot();
+                }
+            }
         }
     }
 

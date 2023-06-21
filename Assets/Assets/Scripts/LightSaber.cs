@@ -46,9 +46,8 @@ public class LightSaber : MonoBehaviour
     }
 
     public void IsInputing()
-    {
-          if (Input.GetMouseButton(0) && !isHolding && isPowered)
-    {
+    
+    { if (Input.GetMouseButton(0) && !isHolding && isPowered) {
         // Kiểm tra năng lượng còn đủ để bật lưỡi kiếm hay không
         if (currentPower > 0)
         {
@@ -80,8 +79,8 @@ public class LightSaber : MonoBehaviour
             StartCoroutine(ResetReload());
         }
     }
-    else if (Input.GetMouseButton(0) && isHolding && isPowered)
-    {
+        else if (Input.GetMouseButton(0) && isHolding && isPowered)
+      {
         holdTime += Time.deltaTime;
 
         if (holdTime >= timeToReducePower)
@@ -91,7 +90,7 @@ public class LightSaber : MonoBehaviour
             powerBar.fillAmount = currentPower / maxPower;
             holdTime = 0f;
         }
-    }
+      }
     else if (!Input.GetMouseButton(0) && isHolding)
     {
         // Tắt lưỡi kiếm và tắt particle effect
