@@ -26,7 +26,9 @@ public class LightSaber : MonoBehaviour
    // public GameObject reloadPanel; // UI Canvas để hiển thị thông báo pop-up
     public float reloadTime = 2f;
     private bool isReadyToPlay = true;
-
+    public float powerConsumptionHold = 10f;
+    private float holdTime = 0f;
+    public float timeToReducePower = 0.25f;
     public void Start()
     {
         currentPower = maxPower;
@@ -42,59 +44,71 @@ public class LightSaber : MonoBehaviour
 
     public void IsInputing()
     {
-        if (Input.GetMouseButton(0) && !isHolding && isPowered)
+          if (Input.GetMouseButton(0) && !isHolding && isPowered)
+    {
+        // Kiểm tra năng lượng còn đủ để bật lưỡi kiếm hay không
+        if (currentPower > 0)
         {
-            // Kiểm tra năng lượng còn đủ để bật lưỡi kiếm hay không
-            if (currentPower > 0)
+            // Bật lưỡi kiếm và giảm năng lượng
+            foreach (Transform saber in lightSaber)
             {
-                // Bật lưỡi kiếm và giảm năng lượng
-                foreach (Transform saber in lightSaber)
+                if (!saber.GetChild(0).gameObject.activeSelf)
                 {
-                    if (!saber.GetChild(0).gameObject.activeSelf)
+                    saber.GetChild(0).gameObject.SetActive(true);
+                    SetGlow(true, saber.GetChild(0).transform);
+                    currentPower -= 20f * Time.deltaTime;
+                    powerBar.fillAmount = currentPower / maxPower;
+                    foreach (ParticleSystem effect in electicFx)
                     {
-                        saber.GetChild(0).gameObject.SetActive(true);
-                        SetGlow(true, saber.GetChild(0).transform);
-                        currentPower -= 20f * Time.deltaTime;
-                        powerBar.fillAmount = currentPower / maxPower;
-                        foreach (ParticleSystem effect in electicFx)
-                        {
-                            effect.Play();
-                        }
+                        effect.Play();
                     }
                 }
+            }
 
-                isHolding = true;
-                currentPower--;
-            }
-            else if (isReadyToPlay) // Năng lượng đã hết và người chơi sẵn sàng thay đạn
-            {
-                // Hiển thị thông báo pop-up và chờ trong một khoảng thời gian nhất định
-               // reloadPanel.SetActive(true);
-                isReadyToPlay = false;
-                StartCoroutine(ResetReload());
-            }
+            isHolding = true;
+            holdTime = 0f;
         }
-        else if (!Input.GetMouseButton(0) && isHolding)
+        else if (isReadyToPlay) // Năng lượng đã hết và người chơi sẵn sàng thay đạn
         {
-            
-                // Tắt lưỡi kiếm và tắt particle effect
-                foreach (Transform saber in lightSaber)
-                {
-                  
-                    if (saber.GetChild(0).gameObject.activeSelf)
-                    {
-                        saber.GetChild(0).gameObject.SetActive(false);
-                        SetGlow(false, saber.GetChild(0).transform);
-                        powerBar.fillAmount = currentPower / maxPower;
-                        foreach (ParticleSystem effect in electicFx)
-                        {
-                            effect.Stop();
-                        }
-                    }
-                }
-                isHolding = false;
-
+            // Hiển thị thông báo pop-up và chờ trong một khoảng thời gian nhất định
+            // reloadPanel.SetActive(true);
+            isReadyToPlay = false;
+            StartCoroutine(ResetReload());
         }
+    }
+    else if (Input.GetMouseButton(0) && isHolding && isPowered)
+    {
+        holdTime += Time.deltaTime;
+
+        if (holdTime >= timeToReducePower)
+        {
+            // Giảm năng lượng khi giữ chuột trái
+            currentPower -= powerConsumptionHold;
+            powerBar.fillAmount = currentPower / maxPower;
+            holdTime = 0f;
+        }
+    }
+    else if (!Input.GetMouseButton(0) && isHolding)
+    {
+        // Tắt lưỡi kiếm và tắt particle effect
+        foreach (Transform saber in lightSaber)
+        {
+
+            if (saber.GetChild(0).gameObject.activeSelf)
+            {
+                saber.GetChild(0).gameObject.SetActive(false);
+                SetGlow(false, saber.GetChild(0).transform);
+                powerBar.fillAmount = currentPower / maxPower;
+                foreach (ParticleSystem effect in electicFx)
+                {
+                    effect.Stop();
+                }
+            }
+        }
+
+        isHolding = false;
+        holdTime = 0f;
+    }
     }
 
     IEnumerator ResetReload()
@@ -120,15 +134,13 @@ public class LightSaber : MonoBehaviour
         foreach (Material material in glowMaterial)
         {
             material.SetColor("_EmissionColor", saberColor * intensityGlow);
-            // material.SetFloat("_EmissionIntensity",
-            //     Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
+            material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
         }
 
         foreach (Material material in saberGlowMaterial)
         {
             material.SetColor("_EmissionColor", saberColor * intensitySaber);
-            // material.SetFloat("_EmissionIntensity",
-            //     Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
+            material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
         }
     }
     
