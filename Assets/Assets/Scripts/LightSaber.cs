@@ -29,6 +29,9 @@ public class LightSaber : MonoBehaviour
     public float powerConsumptionHold = 10f;
     private float holdTime = 0f;
     public float timeToReducePower = 0.25f;
+    public AudioSource audioSource;
+    public AudioClip saberOnSound;
+    public AudioClip saberoff;
     public void Start()
     {
         currentPower = maxPower;
@@ -62,6 +65,7 @@ public class LightSaber : MonoBehaviour
                     {
                         effect.Play();
                     }
+                    AudioSource.PlayClipAtPoint(saberOnSound, Camera.main.transform.position);
                 }
             }
 
@@ -99,6 +103,7 @@ public class LightSaber : MonoBehaviour
                 saber.GetChild(0).gameObject.SetActive(false);
                 SetGlow(false, saber.GetChild(0).transform);
                 powerBar.fillAmount = currentPower / maxPower;
+                AudioSource.PlayClipAtPoint(saberoff, Camera.main.transform.position);
                 foreach (ParticleSystem effect in electicFx)
                 {
                     effect.Stop();
