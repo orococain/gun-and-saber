@@ -140,7 +140,7 @@ public class LightSaber : MonoBehaviour
         foreach (Material material in saberGlowMaterial)
         {
             material.SetColor("_EmissionColor", saberColor * intensitySaber);
-            material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
+            material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 2f));
         }
     }
     

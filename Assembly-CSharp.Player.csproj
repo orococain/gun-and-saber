@@ -52,7 +52,7 @@
      <Compile Include="Assets\Assets\Scripts\FlashLightAndVibrate.cs" />
      <Compile Include="Assets\Assets\Scripts\GunSelect.cs" />
      <Compile Include="Assets\Assets\Scripts\BulletShell.cs" />
-     <Compile Include="Assets\SaberSelect.cs" />
+     <Compile Include="Assets\Assets\Scripts\SaberSelect.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchToGamePlay.cs" />
      <Compile Include="Assets\Assets\Scripts\SwitchGunMode.cs" />
      <Compile Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\UltimateJoystick.cs" />
@@ -66,6 +66,8 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\LoadingScreen1.cs" />
+     <Compile Include="Assets\Assets\Scripts\ScifiGunSelect.cs" />
+     <Compile Include="Assets\Assets\Scripts\ScifiGun.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\Variations\mono\Managed\UnityEngine.dll</HintPath>
      </Reference>
