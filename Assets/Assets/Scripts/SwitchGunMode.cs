@@ -6,7 +6,7 @@ public class SwitchGunMode : MonoBehaviour
 {
     
     public List<Gun> guns;
-
+    public List<ScifiGun> gun;
     public void BurstModeAllGuns()
     {
         foreach (Gun gun in guns)
@@ -16,5 +16,12 @@ public class SwitchGunMode : MonoBehaviour
         }
     }
 
+    public void AutoModeAllGuns()
+    {
+        foreach (Gun gun in guns)
+        {
+            gun.isAuto();
 
+        }
+    } 
 }

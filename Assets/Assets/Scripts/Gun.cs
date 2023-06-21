@@ -28,6 +28,9 @@ public class Gun : MonoBehaviour
     private bool isFiring = false;
     private bool isSmoking = false;
     private bool isBurst = false;
+    private bool isShooting = false; // Thêm biến isShooting để kiểm tra trạng thái bắn liên tục
+    private Coroutine shootingCoroutine; // Thêm biến shootingCoroutine để lưu reference của coroutine
+
 
     public void Update()
     {
@@ -72,6 +75,23 @@ public class Gun : MonoBehaviour
         }
     }
 
+
+    public void isAuto()
+    {
+        if (currentBullet <= 0 || isShooting) // Nếu hết đạn hoặc đang bắn liên tục thì không thực hiện
+            return;
+        shootingCoroutine = StartCoroutine(ShootContinuously());
+        isShooting = true; // Đánh dấu đang bắn liên tục
+    }
+    public void StopShooting() // Thêm hàm dừng bắn liên tục
+    {
+        if (isShooting)
+        {
+            StopCoroutine(shootingCoroutine);
+            isShooting = false; // Đánh dấu không còn bắn liên tục
+        }
+    }
+
     public void IsBurst(int bulletNum) 
     {
         if (!isBurst || currentBullet > 0)
@@ -110,11 +130,19 @@ public class Gun : MonoBehaviour
         }
     }
     
+    private IEnumerator ShootContinuously()
+    {
+        while (currentBullet > 0)
+        {
+            FlyBullet();
+            yield return new WaitForSeconds(0.1f); // Chờ 0.1 giây trước khi bắn tiếp
+        }
+        isShooting = false; // Đánh dấu không còn bắn liên tục khi hết đạn
+    }
     
     private IEnumerator BurstShoot(int bulletNum = 3 )
     {
         isFiring = true;
-
         for (int i = 0; i < numberBurst && currentBullet > 0; i++)
         {
             currentBullet--;
