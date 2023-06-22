@@ -41,47 +41,58 @@ public class Vape : MonoBehaviour
     [SerializeField] private float minimumTime = 0f; // Thời gian bấm giữ tối thiểu để hiển thị particle effect
     [SerializeField] private float maximumTime = 10f; // Thời gian bấm giữ tối đa để hiển thị particle effect
     private int index = -1; // Chỉ số particle effect đang được hiển thị
+
     public void Update()
     {
         if (isSucking)
         {
             if (Input.GetMouseButton(0) && suckTimer < suckDuration)
             {
-                IsSucking();
-                suckTimer += Time.deltaTime;
-                float fillPercent = suckTimer / suckDuration;
-                lungBar.fillAmount = 1 - fillPercent;
-                // Tìm chỉ số particle effect tương ứng dựa trên thời gian bấm giữ
-                float timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
-                for (int i = 0; i < effectTimes.Length; i++)
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (vape == Physics2D.OverlapPoint(ray.origin))
                 {
-                    if (timePercentage <= effectTimes[i])
+                    IsSucking();
+                    suckTimer += Time.deltaTime;
+                    float fillPercent = suckTimer / suckDuration;
+                    lungBar.fillAmount = 1 - fillPercent;
+                    // Tìm chỉ số particle effect tương ứng dựa trên thời gian bấm giữ
+                    float timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
+                    for (int i = 0; i < effectTimes.Length; i++)
                     {
-                        index = i;
-                        break;
+                        if (timePercentage <= effectTimes[i])
+                        {
+                            index = i;
+                            break;
+                        }
                     }
                 }
+                else
+                {
+                    EndSuck();
+                    isSucking = false;
+                    index = -1;
+                }
             }
-            else
+
+            if (Input.GetMouseButtonUp(0))
             {
-                EndSuck();
-                isSucking = false;
-                lungBar.fillAmount = 1;
+                isTouchingScreen = false;
+                shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
+                // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện
+                if (index >= 0 && index < particleEffects.Length)
+                {
+                    SpawnParticleEffect(particleEffects[index]);
+                }
+
                 index = -1;
             }
         }
+    }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            isTouchingScreen = false;
-            shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
-            // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện
-            if (index >= 0 && index < particleEffects.Length)
-            {
-                SpawnParticleEffect(particleEffects[index]);
-            }
-            index = -1;
-        }
+    public void resetLungBar()
+    {
+        lungBar.fillAmount = 1;
     }
 
     public void Start()
@@ -124,7 +135,7 @@ public class Vape : MonoBehaviour
     public void EndSuck()
     {
         SpawnSmoke();
-            isFillingUp = true;
+        isFillingUp = true;
         StartCoroutine(FillUp(vapeScaleTime));
     }
 
