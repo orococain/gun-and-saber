@@ -49,34 +49,40 @@ public class LightSaber : MonoBehaviour
     
     { if (Input.GetMouseButton(0) && !isHolding && isPowered) {
         // Kiểm tra năng lượng còn đủ để bật lưỡi kiếm hay không
-        if (currentPower > 0)
-        {
-            // Bật lưỡi kiếm và giảm năng lượng
-            foreach (Transform saber in lightSaber)
-            {
-                if (!saber.GetChild(0).gameObject.activeSelf)
-                {
-                    saber.GetChild(0).gameObject.SetActive(true);
-                    SetGlow(true, saber.GetChild(0).transform);
-                    currentPower -= 20f * Time.deltaTime;
-                    powerBar.fillAmount = currentPower / maxPower;
-                    foreach (ParticleSystem effect in electicFx)
-                    {
-                        effect.Play();
-                    }
-                    AudioSource.PlayClipAtPoint(saberOnSound, Camera.main.transform.position);
-                }
-            }
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            isHolding = true;
-            holdTime = 0f;
-        }
-        else if (isReadyToPlay) // Năng lượng đã hết và người chơi sẵn sàng thay đạn
+        if (saberCollider == Physics2D.OverlapPoint(ray.origin))
         {
-            // Hiển thị thông báo pop-up và chờ trong một khoảng thời gian nhất định
-            // reloadPanel.SetActive(true);
-            isReadyToPlay = false;
-            StartCoroutine(ResetReload());
+            if (currentPower > 0)
+            {
+                // Bật lưỡi kiếm và giảm năng lượng
+                foreach (Transform saber in lightSaber)
+                {
+                    if (!saber.GetChild(0).gameObject.activeSelf)
+                    {
+                        saber.GetChild(0).gameObject.SetActive(true);
+                        SetGlow(true, saber.GetChild(0).transform);
+                        currentPower -= 20f * Time.deltaTime;
+                        powerBar.fillAmount = currentPower / maxPower;
+                        foreach (ParticleSystem effect in electicFx)
+                        {
+                            effect.Play();
+                        }
+
+                        AudioSource.PlayClipAtPoint(saberOnSound, Camera.main.transform.position);
+                    }
+                }
+
+                isHolding = true;
+                holdTime = 0f;
+            }
+            else if (isReadyToPlay) // Năng lượng đã hết và người chơi sẵn sàng thay đạn
+            {
+                // Hiển thị thông báo pop-up và chờ trong một khoảng thời gian nhất định
+                // reloadPanel.SetActive(true);
+                isReadyToPlay = false;
+                StartCoroutine(ResetReload());
+            }
         }
     }
         else if (Input.GetMouseButton(0) && isHolding && isPowered)

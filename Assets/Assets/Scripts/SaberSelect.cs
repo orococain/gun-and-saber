@@ -24,8 +24,7 @@ public class SaberSelect : MonoBehaviour
         switchSaberImage5.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(4));
         switchSaberImage6.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(5));
         switchSaberImage7.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(6));
-        switchSaberImage7.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
-        switchSaberImage8.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(8));
+        switchSaberImage8.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
         // Disable all guns except the first one
         for (int i = 0; i < saber.Length; i++)
         {
