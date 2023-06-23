@@ -1,43 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwapBetweenPart : MonoBehaviour
 {
-    public GameObject[] headParts;
-    public GameObject[] batteryParts;
+    public GameObject[] tankHeads;
+    public GameObject[] tankBodies;
+    public int headIndex = 0;
+    public int bodyIndex = 0;
 
-    private int currentHeadIndex = 0;
-    private int currentBatteryIndex = 0;
-
-    private void Start()
-    {
-        // Set initial head and battery parts
-        SetHeadPart(0);
-        SetBatteryPart(0);
+    void Start(){
+        // set default head and body
+        tankHeads[headIndex].SetActive(true);
+        tankBodies[bodyIndex].SetActive(true);
     }
 
-    public void SetHeadPart(int index)
-    {
-        // Disable current head part
-        headParts[currentHeadIndex].SetActive(false);
+    public void ChangeHead(){
+        // disable current head
+        tankHeads[headIndex].SetActive(false);
 
-        // Enable new head part
-        headParts[index].SetActive(true);
+        // change head index to the next or previous one
+        headIndex = (headIndex + 1) % tankHeads.Length;
 
-        // Update current head index
-        currentHeadIndex = index;
+        // enable new head
+        tankHeads[headIndex].SetActive(true);
     }
 
-    public void SetBatteryPart(int index)
-    {
-        // Disable current battery part
-        batteryParts[currentBatteryIndex].SetActive(false);
+    public void ChangeBody(){
+        // disable current body
+        tankBodies[bodyIndex].SetActive(false);
 
-        // Enable new battery part
-        batteryParts[index].SetActive(true);
+        // change body index to the next or previous one
+        bodyIndex = (bodyIndex + 1) % tankBodies.Length;
 
-        // Update current battery index
-        currentBatteryIndex = index;
+        // enable new body
+        tankBodies[bodyIndex].SetActive(true);
     }
 }

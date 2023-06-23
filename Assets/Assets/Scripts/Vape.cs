@@ -63,12 +63,13 @@ public class Vape : MonoBehaviour
                         index = i;
                         break;
                     }
+                   
                 }
-
                 if (lungBar.fillAmount == 0)
                 {
                     resetLungBar();
                 }
+            
                 Debug.Log("Smoke");
                 if (lungBar.fillAmount == 1)
                 {
@@ -80,6 +81,7 @@ public class Vape : MonoBehaviour
                 EndSuck();
                 isSucking = false;
                 index = -1;
+             
             }
             isTouchingScreen = true;
         
