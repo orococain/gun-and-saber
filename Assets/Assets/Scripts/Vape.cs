@@ -44,55 +44,70 @@ public class Vape : MonoBehaviour
 
     public void Update()
     {
-        if (isSucking)
+        if (Input.GetMouseButton(0) && lungBar.fillAmount > 0)
         {
-            if (Input.GetMouseButton(0) && suckTimer < suckDuration)
+            
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (vape == Physics2D.OverlapPoint(ray.origin))
             {
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (vape == Physics2D.OverlapPoint(ray.origin))
+                IsSucking();
+                suckTimer += Time.deltaTime;
+                float fillPercent = suckTimer / suckDuration;
+                lungBar.fillAmount = 1 - fillPercent;
+                // Tìm chỉ số particle effect tương ứng dựa trên thời gian bấm giữ
+                float timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
+                for (int i = 0; i < effectTimes.Length; i++)
                 {
-                    IsSucking();
-                    suckTimer += Time.deltaTime;
-                    float fillPercent = suckTimer / suckDuration;
-                    lungBar.fillAmount = 1 - fillPercent;
-                    // Tìm chỉ số particle effect tương ứng dựa trên thời gian bấm giữ
-                    float timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
-                    for (int i = 0; i < effectTimes.Length; i++)
+                    if (timePercentage <= effectTimes[i] || i == effectTimes.Length - 1)
                     {
-                        if (timePercentage <= effectTimes[i])
-                        {
-                            index = i;
-                            break;
-                        }
+                        index = i;
+                        break;
                     }
                 }
-                else
+
+                if (lungBar.fillAmount == 0)
                 {
-                    EndSuck();
-                    isSucking = false;
-                    index = -1;
+                    resetLungBar();
+                }
+                Debug.Log("Smoke");
+                if (lungBar.fillAmount == 1)
+                {
+                    suckTimer = 0f; // Reset suckTimer khi lung bar đã đầy
                 }
             }
-
-            if (Input.GetMouseButtonUp(0))
+            else
             {
-                isTouchingScreen = false;
-                shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
-                // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện
-                if (index >= 0 && index < particleEffects.Length)
-                {
-                    SpawnParticleEffect(particleEffects[index]);
-                }
-
+                EndSuck();
+                isSucking = false;
                 index = -1;
             }
+            isTouchingScreen = true;
+        
+            if (shouldSpawnSmoke && !Smoke.isPlaying)
+            {
+                SpawnSmoke();
+                shouldSpawnSmoke = false;
+            }
+        }
+        if (Input.GetMouseButtonUp(0) && lungBar.fillAmount > 0 && isTouchingScreen) 
+        {
+            isTouchingScreen = false;
+            shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
+            // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện và đang hút
+            if (index >= 0 && index < particleEffects.Length && isSucking)
+            {
+                SpawnParticleEffect(particleEffects[index]);
+            }
+
+            index = -1; 
         }
     }
+    
 
     public void resetLungBar()
     {
         lungBar.fillAmount = 1;
+        isTouchingScreen = true; 
     }
 
     public void Start()
@@ -134,9 +149,11 @@ public class Vape : MonoBehaviour
 
     public void EndSuck()
     {
+        if (!isSucking) return;
         SpawnSmoke();
         isFillingUp = true;
         StartCoroutine(FillUp(vapeScaleTime));
+        isSucking = false;
     }
 
     public void FillUpJuice(bool isBoostEnergy = false)
@@ -149,7 +166,6 @@ public class Vape : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-        
         KeepJuiceColor();
     }
     

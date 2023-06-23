@@ -24,8 +24,7 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             // if not active, hide the rotation UI and reset the rotations of the items
             UIRight.SetActive(false);
             UILeft.SetActive(false);
-
-       
+            
         }
         else
         {
