@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: juice
-  m_Shader: {fileID: 4800000, guid: 18a84f3bdaabdec49a026a2389dff291, type: 3}
+  m_Shader: {fileID: 4800000, guid: 19b7e5782f0948f4da83e9c2040ad414, type: 3}
   m_ShaderKeywords: _FLIPBOOKBLENDING_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7b3f220945987e94391664be5a4f1d23, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:

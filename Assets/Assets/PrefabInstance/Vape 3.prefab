@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224581653195052485}
-  - component: {fileID: 1545274576420150623}
   m_Layer: 5
   m_Name: Vape 3
   m_TagString: Untagged
@@ -430,48 +429,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1545274576420150623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506702760034877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bdb1c9ddfb5874185f2cfddd46aaf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  juiceMax: 30
-  juiceFireSpeed: 1
-  vapeScaleTime: 5
-  container: {fileID: 0}
-  vapeScaleMin: 5
-  vapeScaleMax: 10
-  lungBar: {fileID: 0}
-  vape: {fileID: 0}
-  Smoke: {fileID: 0}
-  particleEffects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  effectTimes:
-  - 2
-  - 2
-  - 3
-  - 4
-  - 2
-  - 2
-  - 3
-  - 4
-  minimumTime: 1
-  maximumTime: 10
 --- !u!1 &1591161700403690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +993,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224848174978116970}
+  - component: {fileID: 1294211157}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -1064,3 +1022,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1294211157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982864206626686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bdb1c9ddfb5874185f2cfddd46aaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  juiceMax: 30
+  juiceFireSpeed: 1
+  vapeScaleTime: 5
+  container: {fileID: 0}
+  vapeScaleMin: 5
+  vapeScaleMax: 10
+  lungBar: {fileID: 0}
+  vape: {fileID: 0}
+  Smoke: {fileID: 0}
+  particleEffects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  effectTimes:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 1
+  - 2
+  - 3
+  - 4
+  minimumTime: 1
+  maximumTime: 10
+  vapeStart: {fileID: 8300000, guid: e847d304ade091b46b4ccc4a43c307c8, type: 3}
+  vapeOff: {fileID: 8300000, guid: d50c56d197de63f4683da33cd20f398c, type: 3}
+  vapeLoop: {fileID: 8300000, guid: 0fe9c20f991224140a03d8b2ce574a2c, type: 3}

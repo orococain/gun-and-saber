@@ -41,7 +41,9 @@ public class Vape : MonoBehaviour
     [SerializeField] private float minimumTime = 0f; // Thời gian bấm giữ tối thiểu để hiển thị particle effect
     [SerializeField] private float maximumTime = 10f; // Thời gian bấm giữ tối đa để hiển thị particle effect
     private int index = -1; // Chỉ số particle effect đang được hiển thị
-
+    public AudioClip vapeStart;
+    public AudioClip vapeOff;
+    public AudioClip vapeLoop;
     public void Update()
     {
         if (Input.GetMouseButton(0) && lungBar.fillAmount > 0)
@@ -75,6 +77,7 @@ public class Vape : MonoBehaviour
                 {
                     suckTimer = 0f; // Reset suckTimer khi lung bar đã đầy
                 }
+                AudioSource.PlayClipAtPoint(vapeLoop, Camera.main.transform.position);
             }
             else
             {
@@ -84,19 +87,14 @@ public class Vape : MonoBehaviour
              
             }
             isTouchingScreen = true;
-        
-            if (shouldSpawnSmoke && !Smoke.isPlaying)
-            {
-                SpawnSmoke();
-                shouldSpawnSmoke = false;
-            }
+            
         }
         if (Input.GetMouseButtonUp(0) && lungBar.fillAmount > 0 && isTouchingScreen) 
         {
             isTouchingScreen = false;
             shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
             // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện và đang hút
-            if (index >= 0 && index < particleEffects.Length && isSucking)
+            if (index > 0 && index < particleEffects.Length && isSucking)
             {
                 SpawnParticleEffect(particleEffects[index]);
             }
@@ -139,6 +137,7 @@ public class Vape : MonoBehaviour
         juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
         UpdateJuice();
         isTouchingScreen = true;
+        AudioSource.PlayClipAtPoint(vapeStart, Camera.main.transform.position);
     }
 
     public void IsSucking()
@@ -156,6 +155,7 @@ public class Vape : MonoBehaviour
         isFillingUp = true;
         StartCoroutine(FillUp(vapeScaleTime));
         isSucking = false;
+        AudioSource.PlayClipAtPoint(vapeOff, Camera.main.transform.position);
     }
 
     public void FillUpJuice(bool isBoostEnergy = false)
