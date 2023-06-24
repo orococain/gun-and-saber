@@ -17,8 +17,7 @@ public class Vape : MonoBehaviour
     public float vapeScaleTime;
 
     private bool isFillingUp;
-
-    public RectTransform container;
+    
 
     public float vapeScaleMin;
 
@@ -44,6 +43,7 @@ public class Vape : MonoBehaviour
     public AudioClip vapeStart;
     public AudioClip vapeOff;
     public AudioClip vapeLoop;
+    public GameObject juice;
     public void Update()
     {
         if (Input.GetMouseButton(0) && lungBar.fillAmount > 0)
@@ -77,7 +77,7 @@ public class Vape : MonoBehaviour
                 {
                     suckTimer = 0f; // Reset suckTimer khi lung bar đã đầy
                 }
-                AudioSource.PlayClipAtPoint(vapeLoop, Camera.main.transform.position);
+                AudioSource.PlayClipAtPoint(vapeStart, Camera.main.transform.position);
             }
             else
             {
@@ -113,7 +113,6 @@ public class Vape : MonoBehaviour
     public void Start()
     {
         juiceCurrent = juiceMax;
-        KeepJuiceColor();
     }
     
     private void SpawnParticleEffect(ParticleSystem particleEffect)
@@ -124,18 +123,10 @@ public class Vape : MonoBehaviour
         ParticleSystem ps = particleEffect.GetComponent<ParticleSystem>();
         ps.Play();
     }
-    void UpdateJuice()
-    {
-        float juicePercentage = juiceCurrent / juiceMax;
-        Image juiceColor = container.GetComponentInChildren<Image>();
-        juiceColor.color = Color.Lerp(Color.red, Color.green, juicePercentage);
-    }
-
     public void StartSuck()
     {
         juiceCurrent -= juiceFireSpeed * Time.deltaTime;
         juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-        UpdateJuice();
         isTouchingScreen = true;
         AudioSource.PlayClipAtPoint(vapeStart, Camera.main.transform.position);
     }
@@ -144,8 +135,6 @@ public class Vape : MonoBehaviour
     {
         juiceCurrent -= juiceFireSpeed * Time.deltaTime;
         juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-        container.localScale = new Vector3(Mathf.Lerp(vapeScaleMin, vapeScaleMax, juiceCurrent / juiceMax), container.localScale.y, container.localScale.z);
-      
     }
 
     public void EndSuck()
@@ -158,22 +147,11 @@ public class Vape : MonoBehaviour
         AudioSource.PlayClipAtPoint(vapeOff, Camera.main.transform.position);
     }
 
-    public void FillUpJuice(bool isBoostEnergy = false)
-    {
-        juiceCurrent = juiceMax * 0.75f;
-        UpdateJuice();
-    }
 
     protected IEnumerator FillUp(float time)
     {
         yield return new WaitForSeconds(time);
         juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-        KeepJuiceColor();
-    }
-    
-
-    protected void KeepJuiceColor()
-    {
     }
     
     
