@@ -30,7 +30,8 @@ public class Gun : MonoBehaviour
     private bool isBurst = false;
     private bool isShooting = false; // Thêm biến isShooting để kiểm tra trạng thái bắn liên tục
     private Coroutine shootingCoroutine; // Thêm biến shootingCoroutine để lưu reference của coroutine
-
+    AndroidJavaObject camera=null;
+    AndroidJavaObject cameraParameters=null;
 
     public void Update()
     {
@@ -43,6 +44,7 @@ public class Gun : MonoBehaviour
                 if (currentBullet > 0)
                 {
                     FlyBullet();
+                    ToggleAndroidFlashlight();
                 }
                 else
                 {
@@ -253,5 +255,39 @@ private IEnumerator DelayStopSmoke()
         MuzzleParticleSystem.Stop(); 
     }
 }
+public  void ToggleAndroidFlashlight()
+{
 
+    if (camera == null)
+    {
+        AndroidJavaClass cameraClass = new AndroidJavaClass("android.hardware.Camera"); 
+        camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0); 
+        if (camera != null)
+        {
+            cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
+            cameraParameters.Call("setFlashMode","torch"); 
+            camera.Call("setParameters",cameraParameters); 
+        }       
+    }
+    else
+    {
+        cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
+        string flashmode = cameraParameters.Call<string>("getFlashMode");
+        if(flashmode!="torch")
+            cameraParameters.Call("setFlashMode","torch"); 
+        else
+            cameraParameters.Call("setFlashMode","off"); 
+
+        camera.Call("setParameters",cameraParameters); 
+    }
+}
+
+void ReleaseAndroidJavaObjects()
+{
+    if (camera != null)
+    {
+        camera.Call("release");
+        camera = null;
+    }
+}
 }

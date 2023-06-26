@@ -14,6 +14,8 @@ public class GunSelect : MonoBehaviour
     public Image switchGunImage5;
     public Image switchGunImage6;
     public Image switchGunImage7;
+    public Image switchGunImage8;
+    public Image switchGunImage9;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -24,7 +26,8 @@ public class GunSelect : MonoBehaviour
         switchGunImage5.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(4));
         switchGunImage6.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(5));
         switchGunImage7.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(6));
-        switchGunImage7.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
+        switchGunImage8.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
+        switchGunImage9.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(8));
         // Disable all guns except the first one
         for (int i = 0; i < guns.Length; i++)
         {
