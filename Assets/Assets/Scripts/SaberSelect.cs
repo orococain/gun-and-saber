@@ -48,6 +48,10 @@ public class SaberSelect : MonoBehaviour
         }
 
         currentSaberIndex = index;
-        saber[currentSaberIndex].SetActiveRecursively(true);
+        for (int i = 0; i < saber.Length; i++)
+        {
+            saber[i].SetActive(false);
+        }
+        saber[currentSaberIndex].SetActive(true);
     }
 }

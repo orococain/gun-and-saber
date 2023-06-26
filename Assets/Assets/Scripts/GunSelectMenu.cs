@@ -8,7 +8,10 @@ public class GunSelectMenu : MonoBehaviour
     public int currentGunIndex = -1;
     public Button[] switchGunButtons;
     public GameObject UIShop;
-    public GameObject UIGamePlay; 
+    public GameObject UIGamePlay;
+    private int previousGunIndex = -1; // Lưu danh sách vũ khí trước đó trước khi chuyển đổi
+    private GunSelect gunSelect; 
+
     void Start()
     {
         // Add event listeners to switch gun buttons
@@ -28,21 +31,30 @@ public class GunSelectMenu : MonoBehaviour
         }
     }
 
-   public void SwitchToGun(int index)
+    public void SwitchToGun(int index)
     {
         if (index >= guns.Length || index < 0 || index == currentGunIndex)
         {
             return;
         }
 
-        if (currentGunIndex >= 0 && currentGunIndex < guns.Length)
-        {
-            guns[currentGunIndex].SetActive(false);
-        }
-
+        previousGunIndex = currentGunIndex; // Lưu danh sách vũ khí trước đó
         currentGunIndex = index;
+    
+        DeactivatePreviousGun(); // Tắt model trước khi kích hoạt model mới
+
         guns[currentGunIndex].SetActive(true);
+
         UIShop.SetActive(false);
         UIGamePlay.SetActive(true);
+        gunSelect.SwitchToGun(-1);
+    }
+    
+    private void DeactivatePreviousGun()
+    {
+        if (previousGunIndex >= 0 && previousGunIndex < guns.Length)
+        {
+            guns[previousGunIndex].SetActive(false);
+        }
     }
 }

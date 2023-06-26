@@ -16,6 +16,9 @@ public class GunSelect : MonoBehaviour
     public Image switchGunImage7;
     public Image switchGunImage8;
     public Image switchGunImage9;
+    public Image switchGunImage10;
+    private int previousGunIndex = -1;
+    private GunSelectMenu gunSelect;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -28,6 +31,7 @@ public class GunSelect : MonoBehaviour
         switchGunImage7.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(6));
         switchGunImage8.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
         switchGunImage9.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(8));
+        switchGunImage10.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(9));
         // Disable all guns except the first one
         for (int i = 0; i < guns.Length; i++)
         {
@@ -38,19 +42,27 @@ public class GunSelect : MonoBehaviour
         }
     }
 
-    void SwitchToGun(int index)
+  public  void SwitchToGun(int index)
     {
         if (index >= guns.Length || index < 0 || index == currentGunIndex)
         {
             return;
         }
 
-        if (currentGunIndex >= 0 && currentGunIndex < guns.Length)
+        previousGunIndex = currentGunIndex;
+        currentGunIndex = index;
+
+        if (previousGunIndex >= 0 && previousGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
         {
-            guns[currentGunIndex].SetActive(false);
+            guns[previousGunIndex].SetActive(false);
         }
 
         currentGunIndex = index;
-        guns[currentGunIndex].SetActiveRecursively(true);
+        for (int i = 0; i < guns.Length; i++)
+        {
+            guns[i].SetActive(false);
+        }
+        guns[currentGunIndex].SetActive(true);
     }
 }
+

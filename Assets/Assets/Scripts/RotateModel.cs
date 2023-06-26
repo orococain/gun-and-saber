@@ -13,6 +13,7 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
     public GameObject UIRight;
     
     private bool isActive = false;
+    public float rotateSpeed = 0.1f;
     
     public void ToggleActive()
     {
@@ -50,7 +51,7 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         {
             foreach (Transform transform in itemTransformList)
             {
-                transform.eulerAngles += new Vector3(-eventData.delta.y, eventData.delta.x, 0);
+                transform.eulerAngles += new Vector3(eventData.delta.y * rotateSpeed, eventData.delta.x * rotateSpeed, 0);
             }
         }
     }

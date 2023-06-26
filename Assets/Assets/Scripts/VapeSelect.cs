@@ -53,6 +53,10 @@ public class VapeSelect : MonoBehaviour
         }
 
         currentvaPeIndex = index;
-        vaPe[currentvaPeIndex].SetActiveRecursively(true);
+        for (int i = 0; i < vaPe.Length; i++)
+        {
+            vaPe[i].SetActive(false);
+        }
+        vaPe[currentvaPeIndex].SetActive(true);
     }
 }
