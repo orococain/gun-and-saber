@@ -73,6 +73,7 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\Vape.cs" />
+     <Compile Include="Assets\Assets\Scripts\ObjectPool.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\Variations\mono\Managed\UnityEngine.dll</HintPath>
      </Reference>

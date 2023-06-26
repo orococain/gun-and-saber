@@ -217,7 +217,7 @@ public void SpawnShell()
     Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
     shellRigidbody.AddForce(CirclePoint.right * ForceBulletShell);
     shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);
-    Destroy(shell.gameObject, 2.0f);
+    Destroy(shell.gameObject, 1.0f);
 }
 
 public void SpawnMuzzle() {

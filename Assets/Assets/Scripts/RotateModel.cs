@@ -51,7 +51,7 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         {
             foreach (Transform transform in itemTransformList)
             {
-                transform.eulerAngles += new Vector3(eventData.delta.y * rotateSpeed, eventData.delta.x * rotateSpeed, 0);
+                transform.eulerAngles += new Vector3(-eventData.delta.y * rotateSpeed, eventData.delta.x * rotateSpeed, 0);
             }
         }
     }
@@ -64,5 +64,6 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         }
     }
 }
+
 
 

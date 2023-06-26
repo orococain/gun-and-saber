@@ -47,12 +47,11 @@ public class GunSelectMenu : MonoBehaviour
 
         UIShop.SetActive(false);
         UIGamePlay.SetActive(true);
-        gunSelect.SwitchToGun(-1);
     }
     
     private void DeactivatePreviousGun()
     {
-        if (previousGunIndex >= 0 && previousGunIndex < guns.Length)
+        if (previousGunIndex >= 0 && previousGunIndex < guns.Length && guns[previousGunIndex].activeSelf)
         {
             guns[previousGunIndex].SetActive(false);
         }

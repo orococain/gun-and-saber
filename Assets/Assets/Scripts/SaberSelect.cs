@@ -14,6 +14,7 @@ public class SaberSelect : MonoBehaviour
     public Image switchSaberImage6;
     public Image switchSaberImage7;
     public Image switchSaberImage8;
+    private int previoussaberIndex = -1;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -35,16 +36,19 @@ public class SaberSelect : MonoBehaviour
         }
     }
 
-    void SwitchToGun(int index)
+    public void SwitchToGun(int index)
     {
         if (index >= saber.Length || index < 0 || index == currentSaberIndex)
         {
             return;
         }
 
-        if (currentSaberIndex >= 0 && currentSaberIndex < saber.Length)
+        previoussaberIndex = currentSaberIndex;
+        currentSaberIndex = index;
+
+        if ( previoussaberIndex >= 0 &&  previoussaberIndex < saber.Length) // tắt model cũ trước khi kích hoạt model mới
         {
-            saber[currentSaberIndex].SetActive(false);
+            saber[ previoussaberIndex].SetActive(false);
         }
 
         currentSaberIndex = index;
@@ -53,5 +57,14 @@ public class SaberSelect : MonoBehaviour
             saber[i].SetActive(false);
         }
         saber[currentSaberIndex].SetActive(true);
+    }
+    
+    public void DisableCurrentSaber()
+    {
+        if (currentSaberIndex >= 0 && currentSaberIndex < saber.Length) // tắt model cũ trước khi kích hoạt model mới
+        {
+            saber[currentSaberIndex].SetActive(false);
+        }
+
     }
 }

@@ -17,6 +17,7 @@ public class VapeSelect : MonoBehaviour
     public Image switchvaPeImage8;
     public Image switchvaPeImage9;
     public Image switchvaPeImage10;
+    private int previousvaPeIndex = -1;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -40,18 +41,14 @@ public class VapeSelect : MonoBehaviour
         }
     }
 
-    void SwitchToVape(int index)
+   public void SwitchToVape(int index)
     {
         if (index >= vaPe.Length || index < 0 || index == currentvaPeIndex)
         {
             return;
         }
 
-        if (currentvaPeIndex >= 0 && currentvaPeIndex < vaPe.Length)
-        {
-            vaPe[currentvaPeIndex].SetActive(false);
-        }
-
+        previousvaPeIndex = currentvaPeIndex;
         currentvaPeIndex = index;
         for (int i = 0; i < vaPe.Length; i++)
         {
@@ -59,4 +56,12 @@ public class VapeSelect : MonoBehaviour
         }
         vaPe[currentvaPeIndex].SetActive(true);
     }
+
+   public void DisableCurrentVape()
+   {
+       if (currentvaPeIndex >= 0 && currentvaPeIndex < vaPe.Length) // tắt model cũ trước khi kích hoạt model mới
+       {
+           vaPe[currentvaPeIndex].SetActive(false);
+       }
+   }
 }

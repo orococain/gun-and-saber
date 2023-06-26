@@ -14,7 +14,7 @@ public class ScifiGunSelect : MonoBehaviour
     public Image switchGunImage6;
     public Image switchGunImage7;
     public Image switchGunImage8;
-    
+    private int previousGunIndex = -1;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -36,16 +36,19 @@ public class ScifiGunSelect : MonoBehaviour
         }
     }
 
-    void SwitchToGun(int index)
+   public  void SwitchToGun(int index)
     {
         if (index >= guns.Length || index < 0 || index == currentGunIndex)
         {
             return;
         }
 
-        if (currentGunIndex >= 0 && currentGunIndex < guns.Length)
+        previousGunIndex = currentGunIndex;
+        currentGunIndex = index;
+
+        if (previousGunIndex >= 0 && previousGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
         {
-            guns[currentGunIndex].SetActive(false);
+            guns[previousGunIndex].SetActive(false);
         }
 
         currentGunIndex = index;
@@ -55,5 +58,14 @@ public class ScifiGunSelect : MonoBehaviour
         }
         guns[currentGunIndex].SetActive(true);
     }
+   
+   public void DisableCurrentGun()
+   {
+       if (currentGunIndex >= 0 && currentGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
+       {
+           guns[currentGunIndex].SetActive(false);
+       }
+
+   }
 }
 

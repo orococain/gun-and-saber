@@ -18,7 +18,6 @@ public class GunSelect : MonoBehaviour
     public Image switchGunImage9;
     public Image switchGunImage10;
     private int previousGunIndex = -1;
-    private GunSelectMenu gunSelect;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -51,18 +50,19 @@ public class GunSelect : MonoBehaviour
 
         previousGunIndex = currentGunIndex;
         currentGunIndex = index;
-
-        if (previousGunIndex >= 0 && previousGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
-        {
-            guns[previousGunIndex].SetActive(false);
-        }
-
-        currentGunIndex = index;
         for (int i = 0; i < guns.Length; i++)
         {
             guns[i].SetActive(false);
         }
         guns[currentGunIndex].SetActive(true);
     }
+
+  public void DisableCurrentGun()
+  {
+      if (previousGunIndex >= 0 && previousGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
+      {
+          guns[currentGunIndex].SetActive(false);
+      }
+  }
 }
 
