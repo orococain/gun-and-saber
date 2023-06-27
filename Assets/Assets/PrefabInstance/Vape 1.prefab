@@ -52,13 +52,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   juiceMax: 30
   juiceFireSpeed: 1
+  juiceCurrent: 0
   vapeScaleTime: 5
-  container: {fileID: 0}
-  vapeScaleMin: 5
-  vapeScaleMax: 10
   lungBar: {fileID: 0}
   vape: {fileID: 0}
   Smoke: {fileID: 0}
+  particleEffects: []
+  effectTimes: []
+  minimumTime: 0
+  maximumTime: 10
+  vapeStart: {fileID: 0}
+  vapeOff: {fileID: 0}
+  vapeLoop: {fileID: 0}
 --- !u!1 &1252192992202415
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,9 +335,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4994258015853370}
   - {fileID: 4204294076442083}
   - {fileID: 4057106837957964}
-  - {fileID: 4994258015853370}
   - {fileID: 4044036357556065}
   m_Father: {fileID: 224797955223552490}
   m_RootOrder: 3
@@ -679,7 +684,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4820237321724498}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
 --- !u!33 &33425038523242914
 MeshFilter:
@@ -842,7 +847,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4820237321724498}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
 --- !u!33 &33863066922721032
 MeshFilter:
@@ -1003,7 +1008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4820237321724498}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
 --- !u!33 &33301077353123484
 MeshFilter:

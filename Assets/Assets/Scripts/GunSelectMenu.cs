@@ -11,7 +11,7 @@ public class GunSelectMenu : MonoBehaviour
     public GameObject UIGamePlay;
     private int previousGunIndex = -1; // Lưu danh sách vũ khí trước đó trước khi chuyển đổi
     private GunSelect gunSelect; 
-
+    public GameObject UIGameMode;
     void Start()
     {
         // Add event listeners to switch gun buttons
@@ -47,6 +47,7 @@ public class GunSelectMenu : MonoBehaviour
 
         UIShop.SetActive(false);
         UIGamePlay.SetActive(true);
+        UIGameMode.SetActive(false);
     }
     
     private void DeactivatePreviousGun()

@@ -8,30 +8,30 @@ using UnityEngine.EventSystems;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] public int bulletMax; //số đạn tối đa của khẩu súng
-    public float waitReload; //thời gian chờ để nạp đạn
-    public AudioClip clipShoot; //âm thanh khi bắn đạn
-    public int numberBurst; //số đạn bắn liên tiếp
-    public AudioClip clipReload; //âm thanh khi nạp đạn
-    private bool isReloading; //đang trong quá trình nạp đạn
-    public int currentBullet; //số đạn hiện tại của khẩu súng
-    public BulletShell BulletShellPrefab; //prefab của hiệu ứng vỏ đạn  khi bắn
-    public float BulletShellScale; //tỉ lệ thu nhỏ của hiệu ứng vỏ đạn  khi bắn
-    public float ForceBulletShell; //lực tác động khi spawn hiệu ứng hạt nhựa khi bắn
-    public Transform PointFx; //vị trí để hiển thị hiệu ứng khi bắn
-    public Transform CirclePoint;
-    public GameObject MuzzlePrefab; //prefab của hiệu ứng khi bắn
-    public GameObject effect; //prefab của hiệu ứng ánh sáng khi bắn
-    public ParticleSystem MuzzleParticleSystem;
-    public TMP_Text bulletCountText;
-    public Collider2D gunCollider;
-    private bool isFiring = false;
-    private bool isSmoking = false;
-    private bool isBurst = false;
-    private bool isShooting = false; // Thêm biến isShooting để kiểm tra trạng thái bắn liên tục
+    [SerializeField] private int bulletMax; //số đạn tối đa của khẩu súng
+    [SerializeField] private float waitReload; //thời gian chờ để nạp đạn
+    [SerializeField] private AudioClip clipShoot; //âm thanh khi bắn đạn
+    [SerializeField] private int numberBurst; //số đạn bắn liên tiếp
+    [SerializeField] private AudioClip clipReload; //âm thanh khi nạp đạn
+    [SerializeField] private bool isReloading; //đang trong quá trình nạp đạn
+    [SerializeField] private int currentBullet; //số đạn hiện tại của khẩu súng
+    [SerializeField] private Transform PointFx; //vị trí để hiển thị hiệu ứng khi bắn
+    [SerializeField] private Transform CirclePoint;
+    [SerializeField] private GameObject MuzzlePrefab; //prefab của hiệu ứng khi bắn
+    [SerializeField] private GameObject effect; //prefab của hiệu ứng ánh sáng khi bắn
+    [SerializeField] private ParticleSystem MuzzleParticleSystem;
+    [SerializeField] private TMP_Text bulletCountText;
+    [SerializeField] public Collider2D gunCollider;
+    private bool isFiring;
+    private bool isSmoking;
+    private readonly bool isBurst = false;
+    private bool isShooting; // Thêm biến isShooting để kiểm tra trạng thái bắn liên tục
     private Coroutine shootingCoroutine; // Thêm biến shootingCoroutine để lưu reference của coroutine
-    AndroidJavaObject camera=null;
-    AndroidJavaObject cameraParameters=null;
+    private AndroidJavaObject camera;
+    private AndroidJavaObject cameraParameters;
+    private Queue<GameObject> bulletPool;
+    [SerializeField] private int poolSize = 10;
+    [SerializeField] private GameObject bulletPrefab;
 
     public void Update()
     {
@@ -51,29 +51,32 @@ public class Gun : MonoBehaviour
                     Reload();
                 }
             }
-            if (isFiring) {
-                    isFiring = false;
-                    StartCoroutine(DelayStopSmoke()); 
-                    
+
+            if (isFiring)
+            {
+                isFiring = false;
+                StartCoroutine(DelayStopSmoke());
             }
             else if (Input.GetMouseButton(0))
             {
                 // Nếu người dùng đang giữ chuột trái, thực hiện bắn liên tục
-                if (!isBurst || currentBullet > 0)
-                {
-                    BurstShoot();
-                }
+                if (!isBurst || currentBullet > 0) BurstShoot();
             }
         }
     }
 
-    
 
     public void Start()
     {
-        if (bulletCountText != null)
+        if (bulletCountText != null) bulletCountText.text = currentBullet.ToString();
+        
+        bulletPool = new Queue<GameObject>();
+
+        for (int i = 0; i < poolSize; i++)
         {
-            bulletCountText.text = currentBullet.ToString();
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.SetActive(false);
+            bulletPool.Enqueue(bullet);
         }
     }
 
@@ -85,6 +88,7 @@ public class Gun : MonoBehaviour
         shootingCoroutine = StartCoroutine(ShootContinuously());
         isShooting = true; // Đánh dấu đang bắn liên tục
     }
+
     public void StopShooting() // Thêm hàm dừng bắn liên tục
     {
         if (isShooting)
@@ -94,7 +98,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void IsBurst(int bulletNum) 
+    public void IsBurst(int bulletNum)
     {
         if (!isBurst || currentBullet > 0)
         {
@@ -102,36 +106,33 @@ public class Gun : MonoBehaviour
             Debug.Log("Burst");
         }
     }
-  
+
     public void FlyBullet()
     {
-        
         if (currentBullet > 0)
         {
             currentBullet--;
-            if (bulletCountText != null)
-            {
-                bulletCountText.text = currentBullet.ToString();
-            }
-            SpawnShell();
+            if (bulletCountText != null) bulletCountText.text = currentBullet.ToString();
+            GameObject bullet = bulletPool.Dequeue();
+            bullet.SetActive(true);
+            bullet.transform.position = CirclePoint.position;
+            bullet.transform.rotation = CirclePoint.rotation;
+           // SpawnShell();
             gameObject.GetComponent<Animator>().Play("Shoot");
             AudioSource.PlayClipAtPoint(clipShoot, Camera.main.transform.position);
             SpawnMuzzle();
             if (effect != null)
             {
-                GameObject obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
+                var obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
                 Destroy(obj, 2.0f);
             }
+            StartCoroutine(DisableBullet(bullet));
 
             isFiring = true;
-            if (currentBullet <= 0 && isReloading)
-            {
-                Reload();
-            }
-
+            if (currentBullet <= 0 && isReloading) Reload();
         }
     }
-    
+
     private IEnumerator ShootContinuously()
     {
         while (currentBullet > 0)
@@ -139,43 +140,38 @@ public class Gun : MonoBehaviour
             FlyBullet();
             yield return new WaitForSeconds(0.1f); // Chờ 0.1 giây trước khi bắn tiếp
         }
+
         isShooting = false; // Đánh dấu không còn bắn liên tục khi hết đạn
     }
-    
-    private IEnumerator BurstShoot(int bulletNum = 3 )
+
+    private IEnumerator BurstShoot(int bulletNum = 3)
     {
         isFiring = true;
-        for (int i = 0; i < numberBurst && currentBullet > 0; i++)
+        for (var i = 0; i < numberBurst && currentBullet > 0; i++)
         {
             currentBullet--;
-            if (bulletCountText != null)
-            {
-                bulletCountText.text = currentBullet.ToString();
-            }
+            if (bulletCountText != null) bulletCountText.text = currentBullet.ToString();
 
-            SpawnShell();
+            //SpawnShell();
             gameObject.GetComponent<Animator>().Play("Shoot");
             AudioSource.PlayClipAtPoint(clipShoot, Camera.main.transform.position);
             SpawnMuzzle();
             if (effect != null)
             {
-                GameObject obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
+                var obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
                 Destroy(obj, 2.0f);
             }
+
             yield return new WaitForSeconds(0.1f);
         }
 
-        if (currentBullet <= 0 && isReloading)
-        {
-            Reload();
-        }
+        if (currentBullet <= 0 && isReloading) Reload();
 
         // Thực hiện chờ giữa các burst
         yield return new WaitForSeconds(0.5f);
         isFiring = false;
     }
-    
-    
+
 
     public void Reload()
     {
@@ -183,14 +179,10 @@ public class Gun : MonoBehaviour
             if (!isReloading)
             {
                 if (currentBullet >= bulletMax) // Kiểm tra súng đã full đạn chưa
-                {
                     return;
-                }
 
                 if (currentBullet > 0) // Nếu súng chưa hết đạn thì không cho đổi đạn
-                {
                     return;
-                }
 
                 isReloading = true;
                 gameObject.GetComponent<Animator>().Play("Reload");
@@ -199,95 +191,91 @@ public class Gun : MonoBehaviour
             }
         }
     }
-    
-    private IEnumerator DelayReloadBullet(float waitTime) {
+
+    private IEnumerator DelayReloadBullet(float waitTime)
+    {
         yield return new WaitForSeconds(1);
         currentBullet = bulletMax;
         isReloading = false;
-        
     }
-    public void PlayMagOutSound() {
+
+    public void PlayMagOutSound()
+    {
         AudioSource.PlayClipAtPoint(clipReload, Camera.main.transform.position);
     }
-    
-
-public void SpawnShell()
-{
-    BulletShell shell = Instantiate(BulletShellPrefab,CirclePoint.position, CirclePoint.rotation);
-    Rigidbody shellRigidbody = shell.GetComponent<Rigidbody>();
-    shellRigidbody.AddForce(CirclePoint.right * ForceBulletShell);
-    shell.transform.localScale = new Vector3(BulletShellScale, BulletShellScale, BulletShellScale);
-    Destroy(shell.gameObject, 1.0f);
-}
-
-public void SpawnMuzzle() {
-    if (MuzzlePrefab != null && PointFx != null)
+    public void SpawnMuzzle()
     {
-        GameObject muzzle = Instantiate(MuzzlePrefab, PointFx.position, Quaternion.Euler(new Vector3(180, 0, 180)), transform.parent);
-        Destroy(muzzle, 0.3f);
-    }
-}
-
-public void SpawnSmoke()
-{
-    if (MuzzlePrefab != null && PointFx != null)
-    {
-        MuzzleParticleSystem.transform.localPosition = Vector3.zero;
-        MuzzleParticleSystem.transform.localRotation = Quaternion.identity;
-        ParticleSystem ps = MuzzleParticleSystem.GetComponent<ParticleSystem>();
-        ps.Play();
-    }
-}
-
-private IEnumerator DelayStopSmoke()
-{
-    while (isFiring)
-    {
-        yield return null;
+        if (MuzzlePrefab != null && PointFx != null)
+        {
+            var muzzle = Instantiate(MuzzlePrefab, PointFx.position, Quaternion.Euler(new Vector3(180, 0, 180)), transform.parent);
+            Destroy(muzzle, 0.3f);
+        }
     }
 
-    if (!isSmoking)
+    public void SpawnSmoke()
     {
-        isSmoking = true;
-        SpawnSmoke();
-        yield return new WaitForSeconds(MuzzleParticleSystem.main.duration);
-        isSmoking = false;
-        MuzzleParticleSystem.Stop(); 
+        if (MuzzlePrefab != null && PointFx != null)
+        {
+            MuzzleParticleSystem.transform.localPosition = Vector3.zero;
+            MuzzleParticleSystem.transform.localRotation = Quaternion.identity;
+            var ps = MuzzleParticleSystem.GetComponent<ParticleSystem>();
+            ps.Play();
+        }
     }
-}
-public  void ToggleAndroidFlashlight()
-{
 
-    if (camera == null)
+    private IEnumerator DelayStopSmoke()
     {
-        AndroidJavaClass cameraClass = new AndroidJavaClass("android.hardware.Camera"); 
-        camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0); 
-        if (camera != null)
+        while (isFiring) yield return null;
+
+        if (!isSmoking)
+        {
+            isSmoking = true;
+            SpawnSmoke();
+            yield return new WaitForSeconds(MuzzleParticleSystem.main.duration);
+            isSmoking = false;
+            MuzzleParticleSystem.Stop();
+        }
+    }
+
+    public void ToggleAndroidFlashlight()
+    {
+        if (camera == null)
+        {
+            var cameraClass = new AndroidJavaClass("android.hardware.Camera");
+            camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0);
+            if (camera != null)
+            {
+                cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
+                cameraParameters.Call("setFlashMode", "torch");
+                camera.Call("setParameters", cameraParameters);
+            }
+        }
+        else
         {
             cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
-            cameraParameters.Call("setFlashMode","torch"); 
-            camera.Call("setParameters",cameraParameters); 
-        }       
-    }
-    else
-    {
-        cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
-        string flashmode = cameraParameters.Call<string>("getFlashMode");
-        if(flashmode!="torch")
-            cameraParameters.Call("setFlashMode","torch"); 
-        else
-            cameraParameters.Call("setFlashMode","off"); 
+            var flashmode = cameraParameters.Call<string>("getFlashMode");
+            if (flashmode != "torch")
+                cameraParameters.Call("setFlashMode", "torch");
+            else
+                cameraParameters.Call("setFlashMode", "off");
 
-        camera.Call("setParameters",cameraParameters); 
+            camera.Call("setParameters", cameraParameters);
+        }
     }
-}
 
-void ReleaseAndroidJavaObjects()
-{
-    if (camera != null)
+    private void ReleaseAndroidJavaObjects()
     {
-        camera.Call("release");
-        camera = null;
+        if (camera != null)
+        {
+            camera.Call("release");
+            camera = null;
+        }
     }
-}
+    
+    private IEnumerator DisableBullet(GameObject bullet)
+    {
+        yield return new WaitForSeconds(2.0f);
+        bullet.SetActive(false);
+        bulletPool.Enqueue(bullet);
+    }
 }

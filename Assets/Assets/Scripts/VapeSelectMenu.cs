@@ -9,6 +9,7 @@ public class VapeSelectMenu : MonoBehaviour
     public Button[] switchVapeButtons;
     public GameObject UIShop;
     public GameObject UIGamePlay; 
+    public GameObject UIGameMode;
     void Start()
     {
         // Add event listeners to switch gun buttons
@@ -44,5 +45,6 @@ public class VapeSelectMenu : MonoBehaviour
         vapes[currentVapeIndex].SetActive(true);
         UIShop.SetActive(false);
         UIGamePlay.SetActive(true);
+        UIGameMode.SetActive(false);
     }
 }

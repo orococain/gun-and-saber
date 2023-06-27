@@ -17,7 +17,6 @@ ScriptsOnlyBuild:
     - SaberSelect
     - ScifiGun
     - ScifiGunSelect
-    - SwapBetweenPart
     - SwitchGunMode
     - SwitchToGamePlay
     - UIGameplayGun
@@ -162,69 +161,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3076}
     - Class: 114
-      Script: {instanceID: 3464}
+      Script: {instanceID: 3466}
     - Class: 114
-      Script: {instanceID: 3518}
+      Script: {instanceID: 3520}
     - Class: 114
-      Script: {instanceID: 3654}
+      Script: {instanceID: 3656}
     - Class: 114
-      Script: {instanceID: 3744}
+      Script: {instanceID: 3746}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 3978}
+      Script: {instanceID: 3980}
     - Class: 114
-      Script: {instanceID: 4018}
+      Script: {instanceID: 4020}
     - Class: 114
-      Script: {instanceID: 4098}
+      Script: {instanceID: 4100}
     - Class: 114
-      Script: {instanceID: 4136}
+      Script: {instanceID: 4138}
     - Class: 114
-      Script: {instanceID: 4248}
+      Script: {instanceID: 4270}
     - Class: 114
-      Script: {instanceID: 4268}
+      Script: {instanceID: 4442}
     - Class: 114
-      Script: {instanceID: 4440}
+      Script: {instanceID: 4504}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4554}
     - Class: 114
-      Script: {instanceID: 4552}
+      Script: {instanceID: 4612}
     - Class: 114
-      Script: {instanceID: 4610}
-    - Class: 114
-      Script: {instanceID: 4638}
-    - Class: 114
-      Script: {instanceID: 27270}
-    - Class: 114
-      Script: {instanceID: 27272}
-    - Class: 114
-      Script: {instanceID: 27274}
-    - Class: 114
-      Script: {instanceID: 27276}
-    - Class: 114
-      Script: {instanceID: 27286}
-    - Class: 114
-      Script: {instanceID: 27288}
-    - Class: 114
-      Script: {instanceID: 27292}
-    - Class: 114
-      Script: {instanceID: 27294}
-    - Class: 114
-      Script: {instanceID: 27296}
-    - Class: 114
-      Script: {instanceID: 27298}
-    - Class: 114
-      Script: {instanceID: 27300}
-    - Class: 114
-      Script: {instanceID: 27306}
-    - Class: 114
-      Script: {instanceID: 27308}
+      Script: {instanceID: 4640}
     - Class: 114
       Script: {instanceID: 27310}
     - Class: 114
-      Script: {instanceID: 27316}
+      Script: {instanceID: 27312}
     - Class: 114
-      Script: {instanceID: 27318}
+      Script: {instanceID: 27314}
+    - Class: 114
+      Script: {instanceID: 27316}
     - Class: 114
       Script: {instanceID: 27322}
     - Class: 114
@@ -232,13 +205,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 27326}
     - Class: 114
-      Script: {instanceID: 27540}
+      Script: {instanceID: 27328}
     - Class: 114
-      Script: {instanceID: 27620}
+      Script: {instanceID: 27330}
     - Class: 114
-      Script: {instanceID: 28328}
+      Script: {instanceID: 27332}
     - Class: 114
-      Script: {instanceID: 28558}
+      Script: {instanceID: 27334}
+    - Class: 114
+      Script: {instanceID: 27336}
+    - Class: 114
+      Script: {instanceID: 27338}
+    - Class: 114
+      Script: {instanceID: 27340}
+    - Class: 114
+      Script: {instanceID: 27342}
+    - Class: 114
+      Script: {instanceID: 27344}
+    - Class: 114
+      Script: {instanceID: 27574}
+    - Class: 114
+      Script: {instanceID: 27782}
+    - Class: 114
+      Script: {instanceID: 29540}
+    - Class: 114
+      Script: {instanceID: 29720}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -331,57 +322,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3028}
     - Class: 114
-      Script: {instanceID: 3792}
+      Script: {instanceID: 3794}
     - Class: 114
-      Script: {instanceID: 3996}
+      Script: {instanceID: 3998}
     - Class: 114
-      Script: {instanceID: 4274}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 27270}
+      Script: {instanceID: 27310}
     - Class: 114
-      Script: {instanceID: 27272}
+      Script: {instanceID: 27312}
     - Class: 114
-      Script: {instanceID: 27274}
+      Script: {instanceID: 27314}
     - Class: 114
-      Script: {instanceID: 27290}
+      Script: {instanceID: 27330}
     - Class: 114
-      Script: {instanceID: 27296}
+      Script: {instanceID: 27336}
     - Class: 114
-      Script: {instanceID: 27306}
+      Script: {instanceID: 27344}
     - Class: 114
-      Script: {instanceID: 27326}
+      Script: {instanceID: 725674}
     - Class: 114
-      Script: {instanceID: 94882}
+      Script: {instanceID: 725676}
     - Class: 114
-      Script: {instanceID: 94884}
+      Script: {instanceID: 725678}
     - Class: 114
-      Script: {instanceID: 94886}
+      Script: {instanceID: 725726}
     - Class: 114
-      Script: {instanceID: 94888}
+      Script: {instanceID: 725740}
     - Class: 114
-      Script: {instanceID: 94890}
+      Script: {instanceID: 725758}
     - Class: 114
-      Script: {instanceID: 96232}
+      Script: {instanceID: 725760}
     - Class: 114
-      Script: {instanceID: 96262}
+      Script: {instanceID: 725762}
     - Class: 114
-      Script: {instanceID: 1625412}
+      Script: {instanceID: 725764}
     - Class: 114
-      Script: {instanceID: 1625414}
+      Script: {instanceID: 725778}
     - Class: 114
-      Script: {instanceID: 1625468}
+      Script: {instanceID: 725878}
     - Class: 114
-      Script: {instanceID: 1625558}
+      Script: {instanceID: 726050}
     - Class: 114
-      Script: {instanceID: 1625728}
+      Script: {instanceID: 726100}
     - Class: 114
-      Script: {instanceID: 1625778}
+      Script: {instanceID: 726102}
     - Class: 114
-      Script: {instanceID: 1625780}
+      Script: {instanceID: 726108}
     - Class: 114
-      Script: {instanceID: 1625782}
+      Script: {instanceID: 726110}
     - Class: 114
-      Script: {instanceID: 1625784}
+      Script: {instanceID: 726114}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -511,7 +502,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: e2ef96a3a3a472cb0d81ec98b4e54105
+      Hash: d3eb0f92f99197e04d93fb869d7e3210
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GunSelectMenu
@@ -547,7 +538,7 @@ ScriptsOnlyBuild:
     className: PlaymodeTestsController
   - hash:
       serializedVersion: 2
-      Hash: bc17bd8cc257ca7355181b93a8ff39c3
+      Hash: f7f4b970aa6141abd3f3200feede44ca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: VapeSelectMenu
@@ -559,7 +550,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: e1363f4ae7a24e97bbae1a4552a95dd4
+      Hash: c237d9939d7fc1f35cb756e280b0786f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIGameplayGun
@@ -703,7 +694,7 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
-      Hash: 107df82def5df9775110d1699dcc35fb
+      Hash: 66db0af718d5e49f0a918334eb83e7de
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Gun
@@ -731,6 +722,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 9426c442ff018248a5e4bba45389f96d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ObjectPool
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -985,7 +982,7 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: acde07138c941b38767d616f4a1b7519
+      Hash: 220b53ed73aa4d0beb0003cd1aa07a96
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Vape
@@ -1001,14 +998,8 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 9426c442ff018248a5e4bba45389f96d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ObjectPool
   platform: 13
   scenePathNames:
   - Assets/Assets/Scene/00 Scenes/Splash.unity
   - Assets/Assets/Scene/00 Scenes/MasterLevel.unity
-  playerPath: C:/Users/hisupergame/Desktop/LightSaber N Gun Demo 26062023.apk
+  playerPath: C:/Users/hisupergame/Desktop/LightSaber N Gun Demo 27062023.apk

@@ -16,47 +16,37 @@ public class UIGameplayGun : MonoBehaviour
 
     public GameObject uiShopSpecialGun;
     
-    public UIGameplayGun.GunInputType currentInputType;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    
-    public enum GunInputType
-    {
-          SINGLE,
-          BURST,
-          AUTO,
-          SHAKE,
-    }
-    
-    public void UpdateBullet(int a )
-    {
-    }
     public void machineGunClick()
     {
         uiGunShop.SetActive(true);
+        uiShopVape.SetActive(false);
         uiMainLobby.SetActive(false);
+        uiShopSaber.SetActive(false);
+        uiShopSpecialGun.SetActive(false);
     }
     public void SaberClick()
     {
         uiShopSaber.SetActive(true);
+        uiShopVape.SetActive(false);
         uiMainLobby.SetActive(false);
+        uiGunShop.SetActive(false);
+        uiShopSpecialGun.SetActive(false);
     }
     public void specialGunClick()
     {
         uiShopSpecialGun.SetActive(true);
+        uiShopVape.SetActive(false);
         uiMainLobby.SetActive(false);
+        uiGunShop.SetActive(false);
+        uiShopSaber.SetActive(false);
     }
     public void VapeClick()
     {
         uiShopVape.SetActive(true);
         uiMainLobby.SetActive(false);
+        uiGunShop.SetActive(false);
+        uiShopSaber.SetActive(false);
+        uiShopSpecialGun.SetActive(false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

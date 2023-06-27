@@ -6,80 +6,59 @@ using UnityEngine.UI;
 
 public class Vape : MonoBehaviour
 {
-    [SerializeField]
-    private float juiceMax; // hàm lượng juice tối đa
-    
-    [SerializeField]
-    private float juiceFireSpeed; // tốc độ tiêu hao juice
-
-    private float juiceCurrent; // hàm lượng juice hiện tại
-
-    public float vapeScaleTime;
-
+    [SerializeField] private float juiceMax;
+    [SerializeField] private float juiceFireSpeed;
+    [SerializeField] private float juiceCurrent;
+    [SerializeField] public float vapeScaleTime;
     private bool isFillingUp;
-    
-
-    public float vapeScaleMin;
-
-    public float vapeScaleMax;
-
-    public Image lungBar; // thanh hiển thị lượng hơi thở còn lại
-
-    public Collider2D vape; // Collider của vape
-
-    private bool isSucking = true; // Biến kiểm tra có đang giữ chạm màn hình hay không
-
-    public ParticleSystem Smoke; // hiệu ứng hơi thở
-
-    private float suckDuration = 2f; // thời gian hút tối đa (giây)
-    private float suckTimer; 
+    [SerializeField] public Image lungBar;
+    [SerializeField] public Collider2D vape;
+    private bool isSucking = true;
+    public ParticleSystem Smoke;
+    private readonly float suckDuration = 2f;
+    private float suckTimer;
     private bool isTouchingScreen = true;
-    bool shouldSpawnSmoke = false;// đồng hồ đếm thời gian hút
-    [SerializeField] private ParticleSystem[] particleEffects; // Mảng các particle effect để hiển thị
-    [SerializeField] private float[] effectTimes; // Thời gian bấm giữ tương ứng với mỗi particle effect
-    [SerializeField] private float minimumTime = 0f; // Thời gian bấm giữ tối thiểu để hiển thị particle effect
-    [SerializeField] private float maximumTime = 10f; // Thời gian bấm giữ tối đa để hiển thị particle effect
-    private int index = -1; // Chỉ số particle effect đang được hiển thị
+    private bool shouldSpawnSmoke;
+
+    [SerializeField] private ParticleSystem[] particleEffects;
+    [SerializeField] private float[] effectTimes;
+    [SerializeField] private float minimumTime;
+    [SerializeField] private float maximumTime = 10f;
+    private int index = -1;
+
     public AudioClip vapeStart;
     public AudioClip vapeOff;
     public AudioClip vapeLoop;
-    public GameObject juice;
-    AndroidJavaObject camera=null;
-    AndroidJavaObject cameraParameters=null;
-    public void Update()
+
+    private AndroidJavaObject camera;
+    private AndroidJavaObject cameraParameters;
+    private void Update()
+    {
+        UpdateSuckState();
+    }
+
+    private void UpdateSuckState()
     {
         if (Input.GetMouseButton(0) && lungBar.fillAmount > 0)
         {
-            
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (vape == Physics2D.OverlapPoint(ray.origin))
             {
-                IsSucking();
+                IsSuckingCoroutine();
                 ToggleAndroidFlashlight();
                 suckTimer += Time.deltaTime;
-                float fillPercent = suckTimer / suckDuration;
+                var fillPercent = suckTimer / suckDuration;
                 lungBar.fillAmount = 1 - fillPercent;
-                // Tìm chỉ số particle effect tương ứng dựa trên thời gian bấm giữ
-                float timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
-                for (int i = 0; i < effectTimes.Length; i++)
-                {
+                var timePercentage = fillPercent * (maximumTime - minimumTime) + minimumTime;
+                for (var i = 0; i < effectTimes.Length; i++)
                     if (timePercentage <= effectTimes[i] || i == effectTimes.Length - 1)
                     {
                         index = i;
                         break;
                     }
-                   
-                }
-                if (lungBar.fillAmount == 0)
-                {
-                    resetLungBar();
-                }
-            
-                Debug.Log("Smoke");
-                if (lungBar.fillAmount == 1)
-                {
-                    suckTimer = 0f; // Reset suckTimer khi lung bar đã đầy
-                }
+
+                if (lungBar.fillAmount == 0) resetLungBar();
+                if (lungBar.fillAmount == 1) suckTimer = 0f;
                 AudioSource.PlayClipAtPoint(vapeStart, Camera.main.transform.position);
             }
             else
@@ -87,113 +66,140 @@ public class Vape : MonoBehaviour
                 EndSuck();
                 isSucking = false;
                 index = -1;
-             
             }
+
             isTouchingScreen = true;
-            
         }
-        if (Input.GetMouseButtonUp(0) && lungBar.fillAmount > 0 && isTouchingScreen) 
+
+        if (Input.GetMouseButtonUp(0) && lungBar.fillAmount > 0 && isTouchingScreen)
         {
             isTouchingScreen = false;
             shouldSpawnSmoke = true; // Khi nhả chuột ra, set biến shouldSpawnSmoke thành true
             // Hiển thị particle effect tương ứng nếu thỏa mãn điều kiện và đang hút
-            if (index > 0 && index < particleEffects.Length && isSucking)
-            {
-                SpawnParticleEffect(particleEffects[index]);
-            }
-
-            index = -1; 
+            if (index > 0 && index < particleEffects.Length && isSucking) SpawnParticleEffect(particleEffects[index]);
+            AudioSource.PlayClipAtPoint(vapeOff, Camera.main.transform.position);
+            index = -1;
         }
     }
-    
 
-    public void resetLungBar()
+    private void IsSuckingCoroutine()
     {
-        lungBar.fillAmount = 1;
-        isTouchingScreen = true; 
-    }
-
-    public void Start()
-    {
-        juiceCurrent = juiceMax;
-    }
-    
-    private void SpawnParticleEffect(ParticleSystem particleEffect)
-    {
-        // Hiển thị particle effect
-        particleEffect.transform.localPosition = Vector3.zero;
-        particleEffect.transform.localRotation = Quaternion.identity;
-        ParticleSystem ps = particleEffect.GetComponent<ParticleSystem>();
-        ps.Play();
-    }
-    public void StartSuck()
-    {
-        juiceCurrent -= juiceFireSpeed * Time.deltaTime;
-        juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-        isTouchingScreen = true;
-        AudioSource.PlayClipAtPoint(vapeStart, Camera.main.transform.position);
+        {
+            if (!isSucking)
+            {
+                StartCoroutine(SuckCoroutine());
+                isSucking = true;
+            }
+        }
     }
 
-    public void IsSucking()
+    private IEnumerator SuckCoroutine()
     {
-        juiceCurrent -= juiceFireSpeed * Time.deltaTime;
-        juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
-    }
+        while (Input.GetMouseButton(0) && lungBar.fillAmount > 0)
+        {
+            juiceCurrent -= juiceFireSpeed * Time.deltaTime;
+            juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
 
-    public void EndSuck()
-    {
-        if (!isSucking) return;
-        SpawnSmoke();
-        isFillingUp = true;
-        StartCoroutine(FillUp(vapeScaleTime));
+            // Update juice mesh để hiển thị giá trị mới
+            var juiceMesh = GetComponentInChildren<MeshFilter>().mesh;
+            var submeshIndex = Mathf.RoundToInt((1 - juiceCurrent / juiceMax) * (juiceMesh.subMeshCount - 1));
+            yield return null;
+        }
+        
         isSucking = false;
-        AudioSource.PlayClipAtPoint(vapeOff, Camera.main.transform.position);
+    }
+    
+
+    public void FillJuice(float amount)
+    {
+        juiceCurrent += amount;
+        juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
+
+        // Update juice mesh để hiển thị giá trị mới
+        var juiceMesh = GetComponentInChildren<MeshFilter>().mesh;
+        var submeshIndex = Mathf.RoundToInt((1 - juiceCurrent / juiceMax) * (juiceMesh.subMeshCount - 1));
+        juiceMesh.subMeshCount = submeshIndex;
+    }
+
+    private IEnumerator ReleaseFlashlight(float time)
+    {
+        yield return new WaitForSeconds(time);
         ReleaseAndroidJavaObjects();
     }
 
-
-    protected IEnumerator FillUp(float time)
+    private void releaseAndroidJavaObjects()
     {
-        yield return new WaitForSeconds(time);
-        juiceCurrent = Mathf.Clamp(juiceCurrent, 0, juiceMax);
+        if (camera != null)
+        {
+            camera.Call("release");
+            camera = null;
+        }
     }
-    
-    
-    public void SpawnSmoke()
+
+    private void SpawnParticleEffect(ParticleSystem particleEffect)
+    {
+        particleEffect.transform.localPosition = Vector3.zero;
+        particleEffect.transform.localRotation = Quaternion.identity;
+        var ps = particleEffect.GetComponent<ParticleSystem>();
+        ps.Play();
+    }
+
+    private void resetLungBar()
+    {
+        lungBar.fillAmount = 1;
+    }
+
+    private void SpawnSmoke()
     {
         Smoke.transform.localPosition = Vector3.zero;
         Smoke.transform.localRotation = Quaternion.identity;
-        ParticleSystem ps = Smoke.GetComponent<ParticleSystem>();
+        var ps = Smoke.GetComponent<ParticleSystem>();
         ps.Play();
     }
-        public  void ToggleAndroidFlashlight()
-    {
 
-        if (camera == null)
+    private void ToggleAndroidFlashlight()
+    {
+        try
         {
-            AndroidJavaClass cameraClass = new AndroidJavaClass("android.hardware.Camera"); 
-            camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0); 
-            if (camera != null)
+            if (camera == null)
+            {
+                var cameraClass = new AndroidJavaClass("android.hardware.Camera");
+                camera = cameraClass.CallStatic<AndroidJavaObject>("open", 0);
+                if (camera != null)
+                {
+                    cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
+                    cameraParameters.Call("setFlashMode", "torch");
+                    camera.Call("setParameters", cameraParameters);
+                }
+            }
+            else
             {
                 cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
-                cameraParameters.Call("setFlashMode","torch"); 
-                camera.Call("setParameters",cameraParameters); 
-            }       
-        }
-        else
-        {
-            cameraParameters = camera.Call<AndroidJavaObject>("getParameters");
-            string flashmode = cameraParameters.Call<string>("getFlashMode");
-            if(flashmode!="torch")
-                cameraParameters.Call("setFlashMode","torch"); 
-            else
-                cameraParameters.Call("setFlashMode","off"); 
+                var flashmode = cameraParameters.Call<string>("getFlashMode");
+                if (flashmode != "torch")
+                    cameraParameters.Call("setFlashMode", "torch");
+                else
+                    cameraParameters.Call("setFlashMode", "off");
 
-            camera.Call("setParameters",cameraParameters); 
+
+                camera.Call("setParameters", cameraParameters);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Failed to toggle flashlight: {e}");
         }
     }
 
-    void ReleaseAndroidJavaObjects()
+    private void EndSuck()
+    {
+        if (!isSucking) return;
+        isFillingUp = true;
+        AudioSource.PlayClipAtPoint(vapeOff, Camera.main.transform.position);
+    }
+
+
+    private void ReleaseAndroidJavaObjects()
     {
         if (camera != null)
         {

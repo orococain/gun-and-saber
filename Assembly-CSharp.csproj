@@ -53,6 +53,7 @@
      <Compile Include="Assets\Assets\Scripts\ButtonFunc.cs" />
      <Compile Include="Assets\Assets\Scripts\ScifiGun.cs" />
      <Compile Include="Assets\Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Assets\Scripts\ObjectPool.cs" />
      <Compile Include="Assets\Assets\Scripts\FlashLightAndVibrate.cs" />
      <Compile Include="Assets\Assets\Scripts\GunSelect.cs" />
      <Compile Include="Assets\Assets\Scripts\BulletShell.cs" />
@@ -73,7 +74,6 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\Vape.cs" />
-     <Compile Include="Assets\Assets\Scripts\ObjectPool.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />

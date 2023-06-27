@@ -53,7 +53,9 @@ public class RotateModel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             {
                 transform.eulerAngles += new Vector3(-eventData.delta.y * rotateSpeed, eventData.delta.x * rotateSpeed, 0);
             }
+            Debug.Log("touch");
         }
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
