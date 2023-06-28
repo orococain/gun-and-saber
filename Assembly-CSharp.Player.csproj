@@ -291,6 +291,9 @@
      <Reference Include="Unity.2D.Sprite.Editor">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="DOTween">
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+     </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
      </Reference>
@@ -647,6 +650,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.Player.csproj">
+      <Project>{c883f416-d088-1683-f8aa-747bc7c46fa9}</Project>
+      <Name>Assembly-CSharp-firstpass.Player</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -101,6 +101,7 @@
      <Folder Include="Assets\Assets\Sprite\Gun Folder" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_Bloom.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <Folder Include="Assets\Assets\Sprite\BackGroundUI" />
      <None Include="Assets\Assets\TextAsset\girl_2_lobby.atlas.txt" />
      <Folder Include="Assets\Assets\Scripts" />
      <Folder Include="Assets\Assets\Cubemap" />
@@ -198,6 +199,7 @@
      <None Include="Assets\Assets\TextAsset\girl_3_lobby.json" />
      <Folder Include="Assets\Assets\Plugins\Assembly-CSharp-firstpass\Properties" />
      <Folder Include="Assets\Assets\LightingSettings" />
+     <Folder Include="Assets\Resources" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_CopyDepth.shader" />
      <Folder Include="Assets\Assets\AnimationClip" />
      <None Include="Assets\Assets\Resources\shaders\UI Extensions\Particles\Multiply.shader" />
@@ -448,6 +450,9 @@
      </Reference>
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+     </Reference>
+     <Reference Include="DOTween">
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -832,6 +837,10 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{38fdad77-9a75-8ae6-163a-1bbc9743d462}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

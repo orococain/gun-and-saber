@@ -5116,7 +5116,7 @@ MonoBehaviour:
   isReloading: 0
   currentBullet: 1
   PointFx: {fileID: 4680737195533364}
-  CirclePoint: {fileID: 0}
+  CirclePoint: {fileID: 4238275208686233}
   MuzzlePrefab: {fileID: 1276152224694702}
   effect: {fileID: 1651096574072922}
   MuzzleParticleSystem: {fileID: 198306288701372557}

@@ -41,12 +41,14 @@ public class VapeSelect : MonoBehaviour
         }
     }
 
-   public void SwitchToVape(int index)
+    public void SwitchToVape(int index)
     {
         if (index >= vaPe.Length || index < 0 || index == currentvaPeIndex)
         {
             return;
         }
+        
+        DisableCurrentVape();
 
         previousvaPeIndex = currentvaPeIndex;
         currentvaPeIndex = index;
@@ -57,11 +59,11 @@ public class VapeSelect : MonoBehaviour
         vaPe[currentvaPeIndex].SetActive(true);
     }
 
-   public void DisableCurrentVape()
-   {
-       if (currentvaPeIndex >= 0 && currentvaPeIndex < vaPe.Length) // tắt model cũ trước khi kích hoạt model mới
-       {
-           vaPe[currentvaPeIndex].SetActive(false);
-       }
-   }
+    public void DisableCurrentVape()
+    {
+        if (currentvaPeIndex >= 0 && currentvaPeIndex < vaPe.Length)
+        {
+            vaPe[currentvaPeIndex].SetActive(false);
+        }
+    }
 }

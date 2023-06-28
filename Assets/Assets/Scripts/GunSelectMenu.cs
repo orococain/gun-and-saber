@@ -14,7 +14,6 @@ public class GunSelectMenu : MonoBehaviour
     public GameObject UIGameMode;
     void Start()
     {
-        // Add event listeners to switch gun buttons
         for (int i = 0; i < switchGunButtons.Length; i++)
         {
             int index = i;

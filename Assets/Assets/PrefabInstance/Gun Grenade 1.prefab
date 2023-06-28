@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4565371728772848
 Transform:
   m_ObjectHideFlags: 0
@@ -9700,8 +9700,8 @@ MonoBehaviour:
   isReloading: 0
   currentBullet: 1
   PointFx: {fileID: 4064425529627420}
-  CirclePoint: {fileID: 0}
-  MuzzlePrefab: {fileID: 1545441285779957}
+  CirclePoint: {fileID: 4068884650665369}
+  MuzzlePrefab: {fileID: 1818799827052897}
   effect: {fileID: 1147764171154638}
   MuzzleParticleSystem: {fileID: 198562643240300461}
   bulletCountText: {fileID: 0}
