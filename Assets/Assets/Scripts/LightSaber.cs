@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
@@ -36,6 +37,7 @@ public class LightSaber : MonoBehaviour
     public AudioClip saberoff;
     AndroidJavaObject camera=null;
     AndroidJavaObject cameraParameters=null;
+    private bool isSaberOn = false;
     public void Start()
     {
         currentPower = maxPower;
@@ -46,6 +48,29 @@ public class LightSaber : MonoBehaviour
     public void Update()
     {
         IsInputing();
+        if (currentPower <= 0 )
+        {
+            // Nếu năng lượng đã hết, tắt lưỡi kiếm và effect
+            foreach (Transform saber in lightSaber)
+            {
+                if (saber.GetChild(0).gameObject.activeSelf)
+                {
+                    saber.GetChild(0).gameObject.SetActive(false);
+                    powerBar.fillAmount = currentPower / maxPower;
+                    SetGlow(false, saber.GetChild(0).transform);
+                    AudioSource.PlayClipAtPoint(saberoff, Camera.main.transform.position);
+                    foreach (ParticleSystem effect in electicFx)
+                    {
+                        effect.Stop();
+                    }
+                    ReleaseAndroidJavaObjects();
+                }
+            }
+
+            isHolding = false;
+            holdTime = 0f;
+            StartCoroutine(ResetReload());
+        }
     }
 
     public void IsInputing()
@@ -81,13 +106,7 @@ public class LightSaber : MonoBehaviour
                     isHolding = true;
                     holdTime = 0f;
                 }
-                else if (isReadyToPlay) // Năng lượng đã hết và người chơi sẵn sàng thay đạn
-                {
-                    // Hiển thị thông báo pop-up và chờ trong một khoảng thời gian nhất định
-                    // reloadPanel.SetActive(true);
-                    isReadyToPlay = false;
-                    StartCoroutine(ResetReload());
-                }
+                
             }
         }
         else if (Input.GetMouseButton(0) && isHolding && isPowered)
@@ -101,8 +120,9 @@ public class LightSaber : MonoBehaviour
                 powerBar.fillAmount = currentPower / maxPower;
                 holdTime = 0f;
             }
+        
         }
-        else if (!Input.GetMouseButton(0) && isHolding)
+        else if (!Input.GetMouseButton(0) && isHolding  )
         {
             // Tắt lưỡi kiếm và tắt particle effect
             foreach (Transform saber in lightSaber)
@@ -113,7 +133,6 @@ public class LightSaber : MonoBehaviour
                     saber.GetChild(0).gameObject.SetActive(false);
                     SetGlow(false, saber.GetChild(0).transform);
                     powerBar.fillAmount = currentPower / maxPower;
-                    AudioSource.PlayClipAtPoint(saberoff, Camera.main.transform.position);
                     foreach (ParticleSystem effect in electicFx)
                     {
                         effect.Stop();
@@ -134,7 +153,6 @@ public class LightSaber : MonoBehaviour
         // Tái nạp năng lượng
         Reload();
         powerBar.gameObject.SetActive(true);
-        //reloadPanel.SetActive(false);
         isReadyToPlay = true;
     }
 
@@ -162,49 +180,20 @@ public class LightSaber : MonoBehaviour
 
     public void ChangeSaberColor(float value)
     {
-        // Lấy giá trị màu từ slider
-        saberColor = Color.HSVToRGB(value, 1f, 1f);
+        // Lấy giá trị màu từ Slider
+        Color saberColor = Color.HSVToRGB(value, 1f, 1f);
 
-        // Cập nhật màu lưỡi kiếm
-        foreach (Transform saber in lightSaber)
+        // Cập nhật màu sáng cho các vật liệu của lưỡi kiếm
+        foreach (Material material in glowMaterial)
         {
-            MeshRenderer saberRenderer = saber.GetComponentInChildren<MeshRenderer>();
-
-            // Cập nhật màu sáng của vật liệu Glow
-            foreach (Material material in glowMaterial)
-            {
-                material.SetColor("_EmissionColor", saberColor * intensityGlow);
-            }
-
-            // Cập nhật màu sáng của vật liệu Saber Glow
-            foreach (Material material in saberGlowMaterial)
-            {
-                material.SetColor("_EmissionColor", saberColor * intensitySaber);
-            }
-
-            // Cập nhật màu sắc của texture và vật liệu của lưỡi kiếm
-            if (saberRenderer != null && saberRenderer.materials != null)
-            {
-                foreach (Material material in saberRenderer.materials)
-                {
-                    if (saberGlowMaterial.Contains(material))
-                    {
-                        Texture2D mainTexture = (Texture2D)material.mainTexture;
-                        Texture2D newTexture = new Texture2D(mainTexture.width, mainTexture.height);
-                        Color[] pixels = mainTexture.GetPixels();
-                        for (int i = 0; i < pixels.Length; i++)
-                        {
-                            pixels[i] *= saberColor;
-                        }
-
-                        newTexture.SetPixels(pixels);
-                        newTexture.Apply();
-                        material.mainTexture = newTexture;
-                    }
-                }
-            }
-
+            material.SetColor("_EmissionColor", saberColor);
         }
+
+        foreach (Material material in saberGlowMaterial)
+        {
+            material.SetColor("_EmissionColor", saberColor);
+        }
+        Debug.Log(("Color"));
     }
     
     public  void ToggleAndroidFlashlight()
