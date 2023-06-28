@@ -40,11 +40,7 @@ public class GunSelectMenu : MonoBehaviour
 
         previousGunIndex = currentGunIndex; // Lưu danh sách vũ khí trước đó
         currentGunIndex = index;
-        if ( previousGunIndex >= 0 &&  previousGunIndex < guns.Length) // tắt model cũ trước khi kích hoạt model mới
-        {
-            guns[ previousGunIndex].SetActive(false);
-        } // Tắt model trước khi kích hoạt model mới
-
+        DeactivatePreviousGun();
         guns[currentGunIndex].SetActive(true);
 
         UIShop.SetActive(false);

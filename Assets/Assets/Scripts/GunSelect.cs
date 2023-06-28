@@ -31,14 +31,6 @@ public class GunSelect : MonoBehaviour
         switchGunImage8.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(7));
         switchGunImage9.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(8));
         switchGunImage10.GetComponent<Button>().onClick.AddListener(() => SwitchToGun(9));
-        // Disable all guns except the first one
-        for (int i = 0; i < guns.Length; i++)
-        {
-            if (i != currentGunIndex)
-            {
-                guns[i].SetActive(false);
-            }
-        }
     }
 
   public  void SwitchToGun(int index)
