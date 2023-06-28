@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4421615536395688
 Transform:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4530534887367143
 Transform:
@@ -78,7 +78,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4115901796675634
 Transform:
@@ -128,23 +128,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletMax: 30
-  maxTimePerShot: 2
   waitReload: 3
   clipShoot: {fileID: 8300000, guid: ba401d80417763b49a6aa1af7529b814, type: 3}
+  numberBurst: 5
   clipReload: {fileID: 8300000, guid: f961afefc7dd77947990a779abb999af, type: 3}
-  anim: {fileID: 95677400350456057}
+  isReloading: 0
   currentBullet: 30
-  BulletShellPrefab: {fileID: 8488642969036113108, guid: b4383b07886c5204899f03a979169abf, type: 3}
-  BulletShellScale: 1
-  BulletShellOffset: {fileID: 0}
-  ForceBulletShell: 1
   PointFx: {fileID: 4530534887367143}
   CirclePoint: {fileID: 4627087597175288}
-  MuzzlePrefab: {fileID: 9070137572575942895, guid: 4f67ef5c78251a44c93794eef926a767, type: 3}
-  MuzzleScale: 1
+  MuzzlePrefab: {fileID: 5632051321620555696, guid: 12c621527c02a944e93738ea6f88974f, type: 3}
   effect: {fileID: 0}
+  MuzzleParticleSystem: {fileID: 198020274410711567}
   bulletCountText: {fileID: 0}
-  fireRate: 0.2
+  gunCollider: {fileID: 0}
+  poolSize: 15
+  bulletPrefab: {fileID: 1812719470741707, guid: b4383b07886c5204899f03a979169abf, type: 3}
 --- !u!1 &1276009113320846
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +159,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4281527193054637
 Transform:
@@ -2439,7 +2437,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4194088478242363
 Transform:
@@ -2518,7 +2516,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4685804506570459
 Transform:
@@ -2548,7 +2546,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4171615709525887
 Transform:
@@ -2580,7 +2578,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4627087597175288
 Transform:
@@ -2611,7 +2609,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 0
 --- !u!4 &4814241734555106
 Transform:
@@ -2646,7 +2644,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4585268967278924
 Transform:
@@ -2725,7 +2723,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4304118900025562
 Transform:

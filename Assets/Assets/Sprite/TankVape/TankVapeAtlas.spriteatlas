@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TankVapeAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b58757cc67863184bbdd423bbc7b689b, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ab52fe50539493347b891844dbda614e, type: 2}
+  - {fileID: 21300000, guid: 95d623c62833d914e824493cddfdb483, type: 2}
+  - {fileID: 21300000, guid: 5c24f32d61fae194c844584dada4e374, type: 2}
+  - {fileID: 21300000, guid: da282894a36f2384bbc19bb6b3c67f26, type: 2}
+  - {fileID: 21300000, guid: f6732583c640e004f9aedfe2df6a3740, type: 2}
+  - {fileID: 21300000, guid: 51838126e5a19fc48af5c154b334756f, type: 2}
+  - {fileID: 21300000, guid: e1e1fc9f6bd2b98449d3f03fc62ebc15, type: 2}
+  - {fileID: 21300000, guid: b1b8d99c25487094daca85f9dfad73ef, type: 2}
+  - {fileID: 21300000, guid: 14ad85fb7c7225b4ba539ed8c322f0b2, type: 2}
+  - {fileID: 21300000, guid: c70bef2466dde7342a27c671623dd90e, type: 2}
+  - {fileID: 21300000, guid: f22d826b4c5281f428bf70626c089b33, type: 2}
+  - {fileID: 21300000, guid: 154b18414c17cb741aa161fa2d6ad2ab, type: 2}
+  - {fileID: 21300000, guid: ea73771d9595339418a4083321115c44, type: 2}
+  - {fileID: 21300000, guid: aa62d55bde7a07b4b8eda9d5ee27ee0e, type: 2}
+  - {fileID: 21300000, guid: 75051c64e939dd041a56db0340d1bd04, type: 2}
+  - {fileID: 21300000, guid: 3642b3845b53ca642a7ea404b819206b, type: 2}
+  - {fileID: 21300000, guid: afac7f6368a74844e961f375785c1de9, type: 2}
+  - {fileID: 21300000, guid: 4f8d91dbf55f79e41a1fe7ecb0bca578, type: 2}
+  - {fileID: 21300000, guid: a00698cef1881ed4397be64a93fe3eef, type: 2}
+  - {fileID: 21300000, guid: 05ffbd80ae1c0134eacbd17324eb6f5f, type: 2}
+  - {fileID: 21300000, guid: b6c986283a79c8744a9817e383d20290, type: 2}
+  - {fileID: 21300000, guid: 963d53bf0e2d1d9439341e1fb237f062, type: 2}
+  - {fileID: 21300000, guid: 0a64976670934044fb6f4bc6ee379d70, type: 2}
+  - {fileID: 21300000, guid: 3fb1e7e3576b2cd46894ea4e6de1019c, type: 2}
+  - {fileID: 21300000, guid: b25ade723cfdc774aa9e3bf8e5e941bc, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - _0017_-bluetip-Copy
+  - _0023_tank05-Copy-3
+  - _0033_tank03-Copy-5
+  - _0021_tank06-Copy-5
+  - _0029_tank04-Copy-4
+  - _0030_tank03-Copy-2
+  - _0020_tank06-Copy-4
+  - _0040_tank01-Copy-4
+  - _0039_tank01-Copy-3
+  - _0018_tank06-Copy-2
+  - _0032_tank03-Copy-4
+  - _0024_tank05-Copy-4
+  - _0037_tank02-Copy-5
+  - _0041_tank01-Copy-5
+  - _0022_tank05-Copy-2
+  - _0031_tank03-Copy-3
+  - _0036_tank02-Copy-4
+  - _0028_tank04-Copy-3
+  - _0038_tank01-Copy-2
+  - _0025_tank05-Copy-5
+  - _0019_tank06-Copy-3
+  - _0035_tank02-Copy-3
+  - _0027_tank04-Copy-2
+  - _0026_tank04-Copy
+  - _0034_tank02-Copy-2
+  m_RenderDataMap: {}
+  m_Tag: TankVapeAtlas
+  m_IsVariant: 0

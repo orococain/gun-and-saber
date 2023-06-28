@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ScifiGunAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3e0e8de334eff5140b78c28b557de458, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: b9f43a7611f0e574f87503a0521a441d, type: 2}
+  - {fileID: 21300000, guid: 41e7e040e78e8334096c3b19c73d0584, type: 2}
+  - {fileID: 21300000, guid: 55716940b60bd3347a996b3f5ad184f7, type: 2}
+  - {fileID: 21300000, guid: ba3b5dec1dbd5e546903d00251a0e473, type: 2}
+  - {fileID: 21300000, guid: ba67c2fb949c58b4ab8e3147c41d6cbe, type: 2}
+  - {fileID: 21300000, guid: 6dc80df0e8fe93f4982498dce2d31c3c, type: 2}
+  - {fileID: 21300000, guid: f37b2602e9682784a94f61edc686ffb0, type: 2}
+  - {fileID: 21300000, guid: e027ca02bc0b94048bffb1fdfd2eff0b, type: 2}
+  - {fileID: 21300000, guid: eb3c3d31b5d5ecd47815312328f690a0, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - mini
+  - rail
+  - rifle1
+  - rifle3
+  - rifle2
+  - mini2
+  - ak
+  - ene
+  - sniper
+  m_RenderDataMap: {}
+  m_Tag: ScifiGunAtlas
+  m_IsVariant: 0

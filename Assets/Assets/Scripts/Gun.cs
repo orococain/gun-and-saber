@@ -35,8 +35,7 @@ public class Gun : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetMouseButtonDown(0)) {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (gunCollider == Physics2D.OverlapPoint(ray.origin)) // Kiểm tra chạm vào Collider bắn súng hay không
@@ -45,6 +44,7 @@ public class Gun : MonoBehaviour
                 {
                     FlyBullet();
                     ToggleAndroidFlashlight();
+                    SpawnSmoke();
                 }
                 else
                 {
@@ -55,7 +55,7 @@ public class Gun : MonoBehaviour
             if (isFiring)
             {
                 isFiring = false;
-                StartCoroutine(DelayStopSmoke());
+                SpawnSmoke();
             }
             else if (Input.GetMouseButton(0))
             {
@@ -231,7 +231,7 @@ public class Gun : MonoBehaviour
         {
             isSmoking = true;
             SpawnSmoke();
-            yield return new WaitForSeconds(MuzzleParticleSystem.main.duration);
+            yield return new WaitForSeconds(1);
             isSmoking = false;
             MuzzleParticleSystem.Stop();
         }

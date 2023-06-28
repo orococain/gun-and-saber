@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SaberAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 78b64f55bc718db4fbd8c3681eab9570, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d0e06912987fc75478e13ac62ea2d063, type: 2}
+  - {fileID: 21300000, guid: 6f98c231ac3e77a48b492cb84e189630, type: 2}
+  - {fileID: 21300000, guid: c70192ba033f0a44387af1ba874acc95, type: 2}
+  - {fileID: 21300000, guid: 8089efc2280c00c4fbafa1ca8472675c, type: 2}
+  - {fileID: 21300000, guid: dad12418b7f9cab49b9e725471ed978e, type: 2}
+  - {fileID: 21300000, guid: d2f0a9efd92968847bf96f9443ec17e4, type: 2}
+  - {fileID: 21300000, guid: 93987d9c5b211ea489a9efa68da0fd4e, type: 2}
+  - {fileID: 21300000, guid: 0a4a4ca721fbf294b96379f99323dc20, type: 2}
+  - {fileID: 21300000, guid: c191fa2975fd252478d4e8181e2b6fae, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - 3_1
+  - 4 new 1
+  - 6_0
+  - 7
+  - 9
+  - 8
+  - 2_0
+  - 5_0
+  - 1_1
+  m_RenderDataMap: {}
+  m_Tag: SaberAtlas
+  m_IsVariant: 0

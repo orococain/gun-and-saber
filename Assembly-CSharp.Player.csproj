@@ -74,6 +74,7 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\Vape.cs" />
+     <Compile Include="Assets\Assets\Scripts\AtlasUser.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\PlaybackEngines\AndroidPlayer\Variations\mono\Managed\UnityEngine.dll</HintPath>
      </Reference>
@@ -286,6 +287,9 @@
      </Reference>
      <Reference Include="Unity.Rider.Editor">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

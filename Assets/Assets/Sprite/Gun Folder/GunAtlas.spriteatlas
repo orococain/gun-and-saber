@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GunAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 022dcc18c4879c44e87bc74d1222cbb6, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fa648a92688292144bb5463cd9ca1b5b, type: 2}
+  - {fileID: 21300000, guid: b651296200be88d419e80f9fa9fb6dbf, type: 2}
+  - {fileID: 21300000, guid: d19b5a3548823a54cb1ece8785cb09d7, type: 2}
+  - {fileID: 21300000, guid: d773080b8f117bd48881d372962b2004, type: 2}
+  - {fileID: 21300000, guid: b6b01bf401d456443a5d2cd1697ab3ce, type: 2}
+  - {fileID: 21300000, guid: 7e281787f679b984ea1c039fb9ede415, type: 2}
+  - {fileID: 21300000, guid: f9542af1e1a1e2642a3622717f92c21e, type: 2}
+  - {fileID: 21300000, guid: 6c810b0b242326b4d808fd0fb3fc8bf7, type: 2}
+  - {fileID: 21300000, guid: c515a06b0f41c984cae145a06f72501c, type: 2}
+  - {fileID: 21300000, guid: ea07f7a175ff0e641815f316a02e32ac, type: 2}
+  - {fileID: 21300000, guid: ddbd65bf8841dd947a9d777108814b19, type: 2}
+  - {fileID: 21300000, guid: dfa30814c8c2f1443b53d1a8ab0317b2, type: 2}
+  - {fileID: 21300000, guid: c19fe4f2fad13f24e8bce5eaa9c52c26, type: 2}
+  - {fileID: 21300000, guid: 973a165e42a697c4ab81e7f91be79b8b, type: 2}
+  - {fileID: 21300000, guid: 006f173b20846d341b7d906ade4834c0, type: 2}
+  - {fileID: 21300000, guid: 93731f8476ee409439f188f6598c8f51, type: 2}
+  - {fileID: 21300000, guid: fca0ce67ba4f4884598542ab6b88aa89, type: 2}
+  - {fileID: 21300000, guid: 098e3e62897f3454fbc632060d3552ae, type: 2}
+  - {fileID: 21300000, guid: c7349af89b4abc146abd390c3b7ed4a7, type: 2}
+  - {fileID: 21300000, guid: c55a70cc4253bd440a5e59a93197e3b0, type: 2}
+  - {fileID: 21300000, guid: 03b1172a125fd0e4fa0d9cd95b76da44, type: 2}
+  - {fileID: 21300000, guid: 8bbaf02efb512834d809f22fba7a4f19, type: 2}
+  - {fileID: 21300000, guid: f63e3e29f5608f140a06440130bae3c3, type: 2}
+  - {fileID: 21300000, guid: fea47990d1179504295e606f60378a33, type: 2}
+  - {fileID: 21300000, guid: db9305f28d35db448a99f4b74674b36a, type: 2}
+  - {fileID: 21300000, guid: 3b5ede8a517e5434eb813cade14abaa1, type: 2}
+  - {fileID: 21300000, guid: 41e41559b0a4536478a462f976272eaf, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - 50 smg_04
+  - 7 pistol_01
+  - 8 pistol_03
+  - 11 m4_07
+  - 40 smg_01
+  - 4 ak47_08
+  - 14 smg_02
+  - 12 m4_08
+  - 3 ak47_07
+  - 10 m4_03
+  - 10 m4_01
+  - 2 ak47_04
+  - 30 pistol_05
+  - 20 pistol_02
+  - 07 upm_03
+  - 00 ak47_01
+  - aug
+  - 08 upm_04
+  - 1 ak47_02
+  - 13 pistol_06
+  - 15 upm_05
+  - 6 smg_05
+  - gran1
+  - 9 upm_02
+  - nuke
+  - 60 sniper_02
+  - 5 sniper_03
+  m_RenderDataMap: {}
+  m_Tag: GunAtlas
+  m_IsVariant: 0

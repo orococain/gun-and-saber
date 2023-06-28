@@ -50,8 +50,6 @@ public class SaberSelect : MonoBehaviour
         {
             saber[ previoussaberIndex].SetActive(false);
         }
-
-        currentSaberIndex = index;
         for (int i = 0; i < saber.Length; i++)
         {
             saber[i].SetActive(false);

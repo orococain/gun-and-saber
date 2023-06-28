@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BackGroundAtlast
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 8192
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2577b38aaae65b34d8336beeafdc7915, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0641544052197984d95b12f06887f747, type: 2}
+  - {fileID: 21300000, guid: 05bc6141401845149846e7989d49ec88, type: 2}
+  - {fileID: 21300000, guid: 13da4ca1231aa6542bb883dac01973ec, type: 2}
+  - {fileID: 21300000, guid: 6f29ac1268253f14a9325de6960ae1a6, type: 2}
+  - {fileID: 21300000, guid: b0e19f339fc884d4abe2804bcb1be449, type: 2}
+  - {fileID: 21300000, guid: 4a748116dc414b24a9936caf0cbd5cb0, type: 2}
+  - {fileID: 21300000, guid: 2e7f04a14ab7bcd4c87f64cc0fa2b5cf, type: 2}
+  - {fileID: 21300000, guid: 8de9b132406796246b0e9eced91326fa, type: 2}
+  - {fileID: 21300000, guid: d47dbf7325f4ee740bced724439bcef8, type: 2}
+  - {fileID: 21300000, guid: 464b3792e928f4c43a3a4bbeab66d181, type: 2}
+  - {fileID: 21300000, guid: f68eb7aa73c745e45977b2c58a911312, type: 2}
+  - {fileID: 21300000, guid: e06dcb53cd0b3a34395f5bea7c052442, type: 2}
+  - {fileID: 21300000, guid: 80edf7652a1718c4cb6b8d5536339ef2, type: 2}
+  - {fileID: 21300000, guid: 0f12ee2d96842ca448a0e6b2a9d016f5, type: 2}
+  - {fileID: 21300000, guid: 89ff50ce3b035e54eb10c38b41beca3b, type: 2}
+  - {fileID: 21300000, guid: fa48f52f833c780449ae91e577e6f40e, type: 2}
+  - {fileID: 21300000, guid: efc1f8d3186e73b448f88d9b272b0922, type: 2}
+  - {fileID: 21300000, guid: d146eb468b48be9479c8679e84fc1d27, type: 2}
+  m_PackedSpriteNamesToIndex:
+  - bg6_0
+  - bg1_0
+  - bg8
+  - bg2_0
+  - bg2
+  - bg4_0
+  - bglobby
+  - bg3
+  - bg7_0
+  - bg8_0
+  - bg6
+  - bg1
+  - bg5_0
+  - bg_lobby
+  - bg7
+  - bg3_0
+  - bg5
+  - bg4
+  m_RenderDataMap: {}
+  m_Tag: BackGroundAtlast
+  m_IsVariant: 0

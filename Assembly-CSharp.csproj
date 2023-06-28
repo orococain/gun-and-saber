@@ -74,6 +74,7 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\Vape.cs" />
+     <Compile Include="Assets\Assets\Scripts\AtlasUser.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />
@@ -97,6 +98,7 @@
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_MaterialError.shader" />
      <None Include="Assets\Assets\Resources\shaders\UI Extensions\Particles\Additive.shader" />
      <None Include="Assets\Assets\Resources\BillingMode.json" />
+     <Folder Include="Assets\Assets\Sprite\Gun Folder" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_Bloom.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Assets\TextAsset\girl_2_lobby.atlas.txt" />
@@ -124,12 +126,14 @@
      <None Include="Assets\Assets\Resources\shaders\UI Extensions\Particles\Alpha Blended.shader" />
      <None Include="Assets\Assets\TextAsset\girl_3_lobby.atlas.txt" />
      <Folder Include="Assets\Assets\TextAsset" />
+     <Folder Include="Assets\Assets\Sprite\background" />
      <None Include="Assets\Assets\TextAsset\girl_5_lobby.json" />
      <None Include="Assets\Assets\Shader\Spine_SkeletonGraphic Additive.shader" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_FinalPost.shader" />
      <None Include="Assets\Assets\Resources\shaders\UI\Particles\Hidden.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Assets\Shader\WFX_Scroll_Smoke.shader" />
+     <Folder Include="Assets\Assets\Sprite\TankVape" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_SubpixelMorphologicalAntialiasing.shader" />
      <Folder Include="Assets\Assets\Resources" />
      <None Include="Assets\Assets\Shader\Hidden_BlitCopyHDRTonemap.shader" />
@@ -160,6 +164,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
      <None Include="Assets\Assets\Resources\shaders\UI Extensions\Particles\~Additive-Multiply.shader" />
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_GaussianDepthOfField.shader" />
+     <Folder Include="Assets\Assets\Sprite\saber" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\Assets\Shader\WFX_Scroll_Multiply Soft Tint.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
@@ -173,6 +178,7 @@
      <None Include="Assets\Assets\Resources\shaders\UI Extensions\Particles\Additive (Soft).shader" />
      <Folder Include="Assets\Assets\AnimatorOverrideController" />
      <Folder Include="Assets\Assets\Scene\00 Scenes" />
+     <Folder Include="Assets\Assets\Sprite\BatteriesVape" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <Folder Include="Assets\Assets\Scene" />
      <Folder Include="Assets\TextMesh Pro\Shaders" />
@@ -212,6 +218,7 @@
      <None Include="Assets\Assets\Shader\Hidden_Universal Render Pipeline_PaniniProjection.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+     <Folder Include="Assets\Assets\Sprite\ScfiGun Folder" />
      <Folder Include="Assets\Scenes" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <Folder Include="Assets\TextMesh Pro\Documentation" />
@@ -819,6 +826,9 @@
      </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
