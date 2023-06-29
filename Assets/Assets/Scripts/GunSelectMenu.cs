@@ -54,4 +54,13 @@ public class GunSelectMenu : MonoBehaviour
             guns[previousGunIndex].SetActive(false);
         }
     }
+    
+    public void ResetGunSelection()
+    {
+        currentGunIndex = -1;
+        for (int i = 0; i < guns.Length; i++)
+        {
+            guns[i].SetActive(false);
+        }
+    }
 }

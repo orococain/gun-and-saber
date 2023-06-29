@@ -47,4 +47,12 @@ public class VapeSelectMenu : MonoBehaviour
         UIGamePlay.SetActive(true);
         UIGameMode.SetActive(false);
     }
+    public void ResetVapeSelection()
+    {
+        currentVapeIndex = -1;
+        for (int i = 0; i < vapes.Length; i++)
+        {
+            vapes[i].SetActive(false);
+        }
+    }
 }

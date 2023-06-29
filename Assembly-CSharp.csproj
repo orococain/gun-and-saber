@@ -51,6 +51,7 @@
      <Compile Include="Assets\Assets\Scripts\LoadingScreen.cs" />
      <Compile Include="Assets\Assets\Scripts\PopUpSetting.cs" />
      <Compile Include="Assets\Assets\Scripts\ButtonFunc.cs" />
+     <Compile Include="Assets\Assets\Scripts\AtlasUser.cs" />
      <Compile Include="Assets\Assets\Scripts\ScifiGun.cs" />
      <Compile Include="Assets\Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Assets\Scripts\ObjectPool.cs" />
@@ -74,7 +75,6 @@
      <Compile Include="Assets\Assets\Scripts\buttonBack.cs" />
      <Compile Include="Assets\Assets\Scripts\LightSaber.cs" />
      <Compile Include="Assets\Assets\Scripts\Vape.cs" />
-     <Compile Include="Assets\Assets\Scripts\AtlasUser.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Assets\Resources\materials" />
      <None Include="Assets\Assets\Shader\Spine_Skeleton.shader" />
@@ -820,6 +820,9 @@
      <Reference Include="Unity.DeviceSimulator.Editor">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.DeviceSimulator.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
@@ -831,9 +834,6 @@
      </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>C:\Users\hisupergame\gun-and-saber\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

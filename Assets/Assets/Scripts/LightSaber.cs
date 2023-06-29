@@ -42,7 +42,7 @@ public class LightSaber : MonoBehaviour
     {
         currentPower = maxPower;
         powerBar.fillAmount = 1;
-        colorSlider.onValueChanged.AddListener(ChangeSaberColor);
+        colorSlider.onValueChanged.AddListener(delegate { ChangeSaberColor(colorSlider.value); });
     }
 
     public void Update()
@@ -165,35 +165,47 @@ public class LightSaber : MonoBehaviour
 
     void SetGlow(bool glow, Transform saber)
     {
-        foreach (Material material in glowMaterial)
+        Color albedoColor = Color.blue;
+
+        if (glow)
         {
-            material.SetColor("_EmissionColor", saberColor * intensityGlow);
-            // material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 0.15f));
+            albedoColor = saberColor * intensityGlow;
         }
 
-        foreach (Material material in saberGlowMaterial)
+        foreach (Transform child in saber)
         {
-            material.SetColor("_EmissionColor", saberColor * intensitySaber);
-            //material.SetFloat("_EmissionIntensity", Mathf.Lerp(material.GetFloat("_EmissionIntensity"), glow ? 1 : 0, 2f));
+            MeshRenderer meshRenderer = child.GetComponentInChildren<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                Material[] materials = meshRenderer.materials;
+                foreach (Material material in materials)
+                {
+                    material.SetColor("_Color", albedoColor);
+                    material.EnableKeyword("_COlor");
+                }
+                meshRenderer.materials = materials;
+            }
         }
+        Debug.Log("glow");
     }
+
 
     public void ChangeSaberColor(float value)
     {
-        // Lấy giá trị màu từ Slider
-        Color saberColor = Color.HSVToRGB(value, 1f, 1f);
+        saberColor = Color.HSVToRGB(value, 1f, 1f);
 
-        // Cập nhật màu sáng cho các vật liệu của lưỡi kiếm
         foreach (Material material in glowMaterial)
         {
-            material.SetColor("_EmissionColor", saberColor);
+            material.SetColor("Color", saberColor);
         }
 
         foreach (Material material in saberGlowMaterial)
         {
-            material.SetColor("_EmissionColor", saberColor);
+            material.SetColor("Color", saberColor);
         }
-        Debug.Log(("Color"));
+
+        // Kiểm tra xem màu đã thay đổi hay chưa
+        Debug.Log("Saber Color: " + saberColor);
     }
     
     public  void ToggleAndroidFlashlight()
