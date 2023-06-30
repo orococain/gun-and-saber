@@ -18,6 +18,7 @@ public class GunSelect : MonoBehaviour
     public Image switchGunImage9;
     public Image switchGunImage10;
     private int previousGunIndex = -1;
+    public GameObject UIShopGun;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -47,6 +48,7 @@ public class GunSelect : MonoBehaviour
             guns[i].SetActive(false);
         }
         guns[currentGunIndex].SetActive(true);
+        UIShopGun.SetActive(false);
     }
 
   public void DisableCurrentGun()

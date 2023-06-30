@@ -51,15 +51,25 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 3fe107f15ade52747bf6fd66f0d6c370, type: 2}
   - {fileID: 21300000, guid: 00d37ca212025d3498270710c6e5a699, type: 2}
+  - {fileID: 21300000, guid: 6bd4e98516601e04589b1f3d68779011, type: 2}
+  - {fileID: 21300000, guid: 56f605c82762dbf42906c6a3a946fafa, type: 2}
   - {fileID: 21300000, guid: 3e656d59cad45a040bc13aee17528b1a, type: 2}
-  - {fileID: 21300000, guid: 4308990e35b6ba344a31ebd3e851effa, type: 2}
   - {fileID: 21300000, guid: c79d654c0a2a6334ea4d0fe2e8121ede, type: 2}
+  - {fileID: 21300000, guid: fff1d94ce2b180344b406e472c691d4d, type: 2}
+  - {fileID: 21300000, guid: 2b0365fc4fd9549428910098665f35da, type: 2}
+  - {fileID: 21300000, guid: 06298fdaef1857d4dbbd9adbdef65c47, type: 2}
+  - {fileID: 21300000, guid: 4308990e35b6ba344a31ebd3e851effa, type: 2}
   m_PackedSpriteNamesToIndex:
   - btn_yellow_0
   - pack_frame
+  - icon_screen
+  - icon_ring
   - btn_blue
-  - pack_yellow_video
   - pack_blue
+  - icon_music_
+  - icon_flash
+  - icon_sound_
+  - pack_yellow_video
   m_RenderDataMap: {}
   m_Tag: UIAtlas
   m_IsVariant: 0

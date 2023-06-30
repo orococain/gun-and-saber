@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour
     private Queue<GameObject> bulletPool;
     [SerializeField] private int poolSize = 10;
     [SerializeField] private GameObject bulletPrefab;
-
+     
     public void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
@@ -123,7 +123,7 @@ public class Gun : MonoBehaviour
             SpawnMuzzle();
             if (effect != null)
             {
-                var obj = Instantiate(effect, PointFx.position, effect.transform.rotation);
+                var obj = Instantiate(effect, PointFx.position, effect.transform.rotation,transform.parent);
                 Destroy(obj, 2.0f);
             }
             StartCoroutine(DisableBullet(bullet));

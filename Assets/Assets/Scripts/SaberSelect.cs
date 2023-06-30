@@ -15,6 +15,7 @@ public class SaberSelect : MonoBehaviour
     public Image switchSaberImage7;
     public Image switchSaberImage8;
     private int previoussaberIndex = -1;
+    public GameObject uiShopSaber;
     void Start()
     {
         // Add event listeners to switch gun images
@@ -46,7 +47,7 @@ public class SaberSelect : MonoBehaviour
         previoussaberIndex = currentSaberIndex;
         currentSaberIndex = index;
 
-        if ( previoussaberIndex >= 0 &&  previoussaberIndex < saber.Length) // tắt model cũ trước khi kích hoạt model mới
+        if ( previoussaberIndex >= 0 &&  previoussaberIndex < saber.Length) // tắt model cũ trước khi kích hoạt model mới0
         {
             saber[ previoussaberIndex].SetActive(false);
         }
@@ -55,6 +56,7 @@ public class SaberSelect : MonoBehaviour
             saber[i].SetActive(false);
         }
         saber[currentSaberIndex].SetActive(true);
+        uiShopSaber.SetActive(false);
     }
     
     public void DisableCurrentSaber()
